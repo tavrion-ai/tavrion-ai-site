@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#090910">
+
+<title>TAVRION AI — Digital Experience</title>
+
+<meta name="description" content="TAVRION AI — цифровые решения, искусственный интеллект и современные технологии.">
+
+<style>
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+}
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+body {
+
+  background: #090910;
+
+  color: #f5f5fa;
+
+  font-family: Arial, sans-serif;
+
+  overflow-x: hidden;
+
+}
+
+a {
+
+  text-decoration: none;
+
+  color: inherit;
+
+}
+
+header {
+
+  min-height: 85px;
+
+  padding: 20px 8%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border-bottom: 1px solid rgba(255,255,255,.08);
+
+}
+
+.logo {
+
+  font-size: 23px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  background: linear-gradient(90deg,#fff,#a99aff);
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+}
+
+nav {
+
+  display: flex;
+
+  gap: 30px;
+
+  font-size: 13px;
+
+  color: #aaa9bd;
+
+}
+
+nav a:hover {
+
+  color: white;
+
+}
+
+.hero {
+
+  min-height: 620px;
+
+  padding: 120px 8% 100px;
+
+  text-align: center;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+
+    radial-gradient(ellipse at 50% 45%,rgba(106,72,220,.22),transparent 55%);
+
+}
+
+.tag {
+
+  color: #b7a5ff;
+
+  border: 1px solid rgba(183,165,255,.3);
+
+  padding: 10px 20px;
+
+  border-radius: 30px;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 30px;
+
+}
+
+.hero h1 {
+
+  font-size: clamp(42px,8vw,82px);
+
+  letter-spacing: 5px;
+
+  line-height: 1.1;
+
+  background: linear-gradient(120deg,#fff,#b5a5ff,#85839d);
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+}
+
+.hero p {
+
+  max-width: 620px;
+
+  margin: 28px auto;
+
+  color: #aaa9bb;
+
+  line-height: 1.8;
+
+  font-size: 16px;
+
+}
+
+.primary-btn {
+
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding: 16px 32px;
+
+  border-radius: 8px;
+
+  background: linear-gradient(110deg,#8b70ff,#6044bd);
+
+  color: white;
+
+  font-weight: bold;
+
+  transition: .3s;
+
+}
+
+.primary-btn:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow: 0 10px 35px rgba(123,94,255,.3);
+
+}
+
+section {
+
+  padding: 90px 8%;
+
+}
+
+.section-title {
+
+  text-align: center;
+
+  font-size: 34px;
+
+  margin-bottom: 15px;
+
+}
+
+.section-subtitle {
+
+  color: #9291a6;
+
+  text-align: center;
+
+  margin-bottom: 50px;
+
+  line-height: 1.7;
+
+}
+
+.cards {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+
+  gap: 22px;
+
+  max-width: 1100px;
+
+  margin: auto;
+
+}
+
+.card {
+
+  padding: 32px 26px;
+
+  border: 1px solid rgba(255,255,255,.09);
+
+  border-radius: 16px;
+
+  background: linear-gradient(145deg,#171622,#101018);
+
+  transition: .3s;
+
+}
+
+.card:hover {
+
+  transform: translateY(-7px);
+
+  border-color: #8870e8;
+
+}
+
+.card .number {
+
+  color: #9c87ff;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+}
+
+.card h3 {
+
+  font-size: 21px;
+
+  margin: 22px 0 13px;
+
+}
+
+.card p {
+
+  color: #aaa9bb;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  min-height: 75px;
+
+}
+
+.card a {
+
+  display: inline-block;
+
+  margin-top: 22px;
+
+  color: #b8a8ff;
+
+  font-size: 14px;
+
+}
+
+.steps {
+
+  max-width: 850px;
+
+  margin: auto;
+
+  display: grid;
+
+  gap: 18px;
+
+}
+
+.step {
+
+  display: flex;
+
+  gap: 22px;
+
+  padding: 24px;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  background: #12121c;
+
+  border-radius: 12px;
+
+}
+
+.step span {
+
+  color: #a48dff;
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+}
+
+.step p {
+
+  color: #aaa9bb;
+
+  line-height: 1.7;
+
+  margin-top: 7px;
+
+}
+
+.contact {
+
+  text-align: center;
+
+  background: radial-gradient(ellipse at center,rgba(101,76,197,.16),transparent 65%);
+
+}
+
+.contact p {
+
+  color: #aaa9bb;
+
+  margin: 20px auto;
+
+  line-height: 1.8;
+
+}
+
+.contact-links {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+
+  margin-top: 30px;
+
+}
+
+.contact-links a {
+
+  padding: 15px 25px;
+
+  border: 1px solid #62518e;
+
+  border-radius: 8px;
+
+  transition: .3s;
+
+}
+
+.contact-links a:hover {
+
+  background: #6b50c6;
+
+}
+
+footer {
+
+  padding: 35px 8%;
+
+  text-align: center;
+
+  color: #77768a;
+
+  border-top: 1px solid rgba(255,255,255,.08);
+
+  font-size: 12px;
+
+  line-height: 2;
+
+}
+
+@media(max-width:600px) {
+
+  header {
+
+    padding: 20px;
+
+  }
+
+  nav {
+
+    gap: 12px;
+
+    font-size: 11px;
+
+  }
+
+  .hero {
+
+    min-height: 550px;
+
+    padding: 80px 20px;
+
+  }
+
+  section {
+
+    padding: 70px 20px;
+
+  }
+
+  .section-title {
+
+    font-size: 28px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <a class="logo" href="#">TAVRION AI</a>
+
+  <nav>
+
+    <a href="#services">Услуги</a>
+
+    <a href="#about">О нас</a>
+
+    <a href="#contact">Контакты</a>
+
+  </nav>
+
+</header>
+
+<main>
+
+<div class="hero">
+
+  <div class="tag">THE FUTURE IS DIGITAL</div>
+
+  <h1>TAVRION AI</h1>
+
+  <p>
+
+    Технологии нового поколения.
+
+    Искусственный интеллект, цифровые решения
+
+    и возможности для современного мира.
+
+  </p>
+
+  <a class="primary-btn" href="#services">Открыть возможности</a>
+
+</div>
+
+<section id="services">
+
+  <h2 class="section-title">Наши направления</h2>
+
+  <p class="section-subtitle">
+
+    Современные цифровые инструменты в одном пространстве.
+
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="number">01 / AI TECHNOLOGY</div>
+
+      <h3>ChatGPT</h3>
+
+      <p>
+
+        Информация об официальных тарифах,
+
+        возможностях и инструментах искусственного интеллекта.
+
+      </p>
+
+      <a href="https://chatgpt.com/" target="_blank">
+
+        Подробнее ↗
+
+      </a>
+
+    </div>
+
+    <div class="card">
+
+      <div class="number">02 / DIGITAL TOOLS</div>
+
+      <h3>AI Solutions</h3>
+
+      <p>
+
+        Создание рекламных материалов, визуального контента
+
+        и цифровых решений с помощью нейросетей.
+
+      </p>
+
+      <a href="#contact">Обсудить проект ↗</a>
+
+    </div>
+
+    <div class="card">
+
+      <div class="number">03 / PREMIUM SERVICES</div>
+
+      <h3>Telegram Premium</h3>
+
+      <p>
+
+        Информация о возможностях Telegram Premium
+
+        и способах официального оформления.
+
+      </p>
+
+      <a href="https://telegram.org/" target="_blank">
+
+        Подробнее ↗
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="about">
+
+  <h2 class="section-title">О TAVRION AI</h2>
+
+  <p class="section-subtitle">
+
+    Независимый цифровой проект, объединяющий современные
+
+    технологии, искусственный интеллект и качественный дизайн.
+
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+
+      <span>01</span>
+
+      <div>
+
+        <h3>Современные технологии</h3>
+
+        <p>Изучаем и используем возможности искусственного интеллекта.</p>
+
+      </div>
+
+    </div>
+
+    <div class="step">
+
+      <span>02</span>
+
+      <div>
+
+        <h3>Качество и стиль</h3>
+
+        <p>Создаём аккуратные, современные и продуманные цифровые решения.</p>
+
+      </div>
+
+    </div>
+
+    <div class="step">
+
+      <span>03</span>
+
+      <div>
+
+        <h3>Связь с клиентами</h3>
+
+        <p>Обсуждаем задачи и помогаем подобрать подходящее решение.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="contact" id="contact">
+
+  <h2 class="section-title">Начнём сотрудничество?</h2>
+
+  <p>
+
+    Есть вопрос или идея для проекта?<br>
+
+    Свяжитесь с нами удобным способом.
+
+  </p>
+
+  <div class="contact-links">
+
+    <a href="https://wa.me/79770070610" target="_blank">
+
+      WhatsApp ↗
+
+    </a>
+
+    <a href="https://t.me/your_username" target="_blank">
+
+      Telegram ↗
+
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <div class="logo">TAVRION AI</div>
+
+  <p>Independent Digital Project © 2026</p>
+
+  <p>
+
+    TAVRION AI не является официальным представителем
+
+    OpenAI или Telegram.
+
+  </p>
+
+</footer>
+
+</body>
+
+</html>
