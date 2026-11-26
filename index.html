@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#08080d">
+
+<meta name="description" content="TAVRION AI — цифровые продукты и консультации по AI-сервисам.">
+
+<title>TAVRION AI — Digital Experience</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+
+  --bg:#08080d;
+
+  --panel:#11111a;
+
+  --purple:#8b72ff;
+
+  --silver:#d9dce8;
+
+  --muted:#9293a4;
+
+  --line:rgba(255,255,255,.1);
+
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+
+  margin:0;background:var(--bg);color:#fff;
+
+  font-family:Manrope,Arial,sans-serif;
+
+  overflow-x:hidden;
+
+}
+
+a{color:inherit;text-decoration:none}
+
+.container{width:min(1120px,90%);margin:auto}
+
+header{
+
+  position:sticky;top:0;z-index:10;
+
+  background:rgba(8,8,13,.82);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:1px solid var(--line);
+
+}
+
+.nav{
+
+  min-height:76px;display:flex;align-items:center;
+
+  justify-content:space-between;gap:20px;
+
+}
+
+.logo{font-size:21px;font-weight:800;letter-spacing:3px}
+
+.logo span{color:var(--purple)}
+
+.navlinks{display:flex;gap:27px;color:#b7b7c4;font-size:13px}
+
+.navlinks a:hover{color:white}
+
+.hero{
+
+  min-height:620px;display:flex;align-items:center;
+
+  position:relative;overflow:hidden;
+
+}
+
+.hero:before{
+
+  content:"";position:absolute;width:540px;height:540px;
+
+  background:radial-gradient(circle,rgba(115,79,255,.25),transparent 68%);
+
+  right:-100px;top:10px;pointer-events:none;
+
+}
+
+.eyebrow{
+
+  color:#b5a7ff;font-size:11px;letter-spacing:4px;
+
+  text-transform:uppercase;margin-bottom:24px;
+
+}
+
+h1{
+
+  font-size:clamp(46px,8vw,88px);line-height:1.04;
+
+  letter-spacing:-4px;margin:0;max-width:800px;
+
+}
+
+h1 span{
+
+  background:linear-gradient(100deg,#fff,#a89aff,#85899c);
+
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+
+}
+
+.hero p{
+
+  max-width:540px;color:var(--muted);
+
+  font-size:16px;line-height:1.9;margin:27px 0 32px;
+
+}
+
+.actions{display:flex;gap:13px;flex-wrap:wrap}
+
+.btn{
+
+  display:inline-flex;justify-content:center;align-items:center;
+
+  padding:15px 23px;border-radius:12px;font-weight:700;
+
+  font-size:13px;transition:.25s;border:1px solid var(--line);
+
+}
+
+.btn.primary{
+
+  color:#090811;background:linear-gradient(110deg,#c7bcff,#8b72ff);
+
+  border:0;
+
+}
+
+.btn:hover{transform:translateY(-3px);filter:brightness(1.1)}
+
+.btn.secondary{background:rgba(255,255,255,.04)}
+
+.section{padding:95px 0}
+
+.section-head{margin-bottom:38px}
+
+.kicker{font-size:11px;letter-spacing:3px;color:var(--purple)}
+
+h2{font-size:clamp(30px,5vw,48px);letter-spacing:-2px;margin:12px 0}
+
+.section-head p{color:var(--muted);line-height:1.8;max-width:600px}
+
+.products{
+
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+
+}
+
+.card{
+
+  padding:28px;border:1px solid var(--line);border-radius:20px;
+
+  background:linear-gradient(145deg,#171722,#0d0d14);
+
+  position:relative;overflow:hidden;transition:.3s;
+
+}
+
+.card:hover{transform:translateY(-7px);border-color:#7764c9}
+
+.card.featured{border-color:rgba(139,114,255,.65)}
+
+.tag{
+
+  display:inline-block;padding:7px 10px;border-radius:30px;
+
+  background:rgba(139,114,255,.13);color:#c2b6ff;
+
+  font-size:10px;letter-spacing:1px;
+
+}
+
+.card h3{font-size:21px;margin:25px 0 8px}
+
+.card .desc{color:var(--muted);font-size:13px;line-height:1.8;min-height:68px}
+
+.price{font-size:34px;font-weight:800;margin:22px 0}
+
+.price small{font-size:13px;color:var(--muted);font-weight:500}
+
+.card .btn{width:100%;margin-top:8px}
+
+.note{font-size:11px;color:#858597;line-height:1.7;margin-top:15px}
+
+.steps{
+
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+
+}
+
+.step{
+
+  padding:25px;border:1px solid var(--line);border-radius:17px;
+
+  background:var(--panel);
+
+}
+
+.number{font-size:30px;color:var(--purple);font-weight:800}
+
+.step h3{font-size:16px}
+
+.step p{font-size:13px;line-height:1.8;color:var(--muted)}
+
+.faq{max-width:780px}
+
+details{border-bottom:1px solid var(--line);padding:20px 0}
+
+summary{cursor:pointer;font-weight:700;font-size:14px}
+
+details p{color:var(--muted);font-size:13px;line-height:1.8}
+
+.contact{
+
+  padding:48px;border:1px solid var(--line);border-radius:24px;
+
+  background:radial-gradient(circle at 90% 10%,rgba(139,114,255,.2),transparent 45%),#11111a;
+
+}
+
+.contact p{color:var(--muted);line-height:1.8}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:#858597;font-size:11px;line-height:1.9}
+
+.footerrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.disclaimer{max-width:720px}
+
+@media(max-width:760px){
+
+  .navlinks{display:none}
+
+  .hero{min-height:570px}
+
+  .products,.steps{grid-template-columns:1fr}
+
+  .card .desc{min-height:0}
+
+  .section{padding:70px 0}
+
+  .contact{padding:28px}
+
+  h1{letter-spacing:-2px}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="container nav">
+
+    <a class="logo" href="#">TAVRION<span> AI</span></a>
+
+    <nav class="navlinks">
+
+      <a href="#products">Продукты</a>
+
+      <a href="#how">Как это работает</a>
+
+      <a href="#faq">FAQ</a>
+
+      <a href="#contact">Контакты</a>
+
+    </nav>
+
+    <a class="btn secondary" href="#products">Каталог ↗</a>
+
+  </div>
+
+</header>
+
+<main>
+
+<section class="hero container">
+
+  <div>
+
+    <div class="eyebrow">Independent Digital Project</div>
+
+    <h1>THE FUTURE<br>IS <span>INTELLIGENT.</span></h1>
+
+    <p>
+
+      Добро пожаловать в TAVRION AI — пространство цифровых
+
+      продуктов, современных технологий и искусственного интеллекта.
+
+    </p>
+
+    <div class="actions">
+
+      <a class="btn primary" href="#products">Посмотреть продукты ↗</a>
+
+      <a class="btn secondary" href="#contact">Связаться с нами</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section container" id="products">
+
+  <div class="section-head">
+
+    <div class="kicker">01 / CATALOG</div>
+
+    <h2>Выбери свой продукт.</h2>
+
+    <p>Ознакомься с предложениями и уточни условия оформления перед покупкой.</p>
+
+  </div>
+
+  <div class="products">
+
+    <article class="card">
+
+      <span class="tag">AI EXPERIENCE</span>
+
+      <h3>ChatGPT GO</h3>
+
+      <p class="desc">Информация о плане ChatGPT Go и помощь с выбором подходящего варианта.</p>
+
+      <div class="price">1 000 ₽</div>
+
+      <a class="btn secondary" href="https://wa.me/79770070610?text=Здравствуйте!%20Интересует%20ChatGPT%20GO.">Уточнить условия ↗</a>
+
+      <div class="note">Цена указана в каталоге проекта. Доступность и условия необходимо подтвердить.</div>
+
+    </article>
+
+    <article class="card featured">
+
+      <span class="tag">ADVANCED EXPERIENCE</span>
+
+      <h3>ChatGPT PLUS</h3>
+
+      <p class="desc">Информация о плане ChatGPT Plus и консультация по официальным возможностям.</p>
+
+      <div class="price">3 000 ₽</div>
+
+      <a class="btn primary" href="https://wa.me/79770070610?text=Здравствуйте!%20Интересует%20ChatGPT%20PLUS.">Уточнить условия ↗</a>
+
+      <div class="note">Цена указана в каталоге проекта. Доступность и условия необходимо подтвердить.</div>
+
+    </article>
+
+    <article class="card">
+
+      <span class="tag">DIGITAL MEMBERSHIP</span>
+
+      <h3>Telegram Premium</h3>
+
+      <p class="desc">Информация о возможностях Telegram Premium и вариантах официального оформления.</p>
+
+      <div class="price">1 000 ₽</div>
+
+      <a class="btn secondary" href="https://wa.me/79770070610?text=Здравствуйте!%20Интересует%20Telegram%20Premium.">Уточнить условия ↗</a>
+
+      <div class="note">Цена указана в каталоге проекта. Доступность и условия необходимо подтвердить.</div>
+
+    </article>
+
+  </div>
+
+</section>
+
+<section class="section container" id="how">
+
+  <div class="section-head">
+
+    <div class="kicker">02 / PROCESS</div>
+
+    <h2>Как это работает.</h2>
+
+    <p>Понятный процесс общения перед оформлением заказа.</p>
+
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+
+      <div class="number">01</div>
+
+      <h3>Выбор продукта</h3>
+
+      <p>Выбери интересующий продукт в каталоге.</p>
+
+    </div>
+
+    <div class="step">
+
+      <div class="number">02</div>
+
+      <h3>Уточнение условий</h3>
+
+      <p>Напиши нам, чтобы узнать актуальную доступность и способ оформления.</p>
+
+    </div>
+
+    <div class="step">
+
+      <div class="number">03</div>
+
+      <h3>Оформление</h3>
+
+      <p>Действуй только после подтверждения условий и безопасного способа покупки.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section container" id="faq">
+
+  <div class="section-head">
+
+    <div class="kicker">03 / INFORMATION</div>
+
+    <h2>Частые вопросы.</h2>
+
+  </div>
+
+  <div class="faq">
+
+    <details>
+
+      <summary>Как узнать актуальную доступность?</summary>
+
+      <p>Напиши нам в WhatsApp или Telegram. Перед оформлением мы уточним доступные варианты и условия.</p>
+
+    </details>
+
+    <details>
+
+      <summary>Является ли TAVRION AI официальным партнёром OpenAI или Telegram?</summary>
+
+      <p>Нет. TAVRION AI — независимый проект и не заявляет об официальном партнёрстве с этими компаниями.</p>
+
+    </details>
+
+    <details>
+
+      <summary>Нужно ли передавать пароль от аккаунта?</summary>
+
+      <p>Не передавай пароли, коды подтверждения и другие секретные данные. Используй только официальные и безопасные способы оформления.</p>
+
+    </details>
+
+    <details>
+
+      <summary>Можно ли сначала уточнить условия?</summary>
+
+      <p>Да. Напиши нам до принятия решения о покупке.</p>
+
+    </details>
+
+  </div>
+
+</section>
+
+<section class="section container" id="contact">
+
+  <div class="contact">
+
+    <div class="kicker">04 / CONTACT</div>
+
+    <h2>Let's connect.</h2>
+
+    <p>Есть вопросы по продуктам? Свяжись с нами удобным способом.</p>
+
+    <div class="actions">
+
+      <a class="btn primary" href="https://wa.me/79770070610">WhatsApp ↗</a>
+
+      <a class="btn secondary" href="https://t.me/">Telegram ↗</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <div class="container footerrow">
+
+    <div>
+
+      <div class="logo">TAVRION<span> AI</span></div>
+
+      <div>Independent Digital Project · 2026</div>
+
+    </div>
+
+    <div class="disclaimer">
+
+      TAVRION AI — независимый проект, не являющийся официальным
+
+      представителем OpenAI или Telegram. Названия продуктов принадлежат
+
+      их правообладателям. Условия, доступность и цены могут меняться.
+
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>
