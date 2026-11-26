@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#090910">
+
+  <meta name="description" content="TAVRION AI — цифровые сервисы и AI-подписки.">
+
+  <title>TAVRION AI — Digital Experience</title>
+
+  <style>
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html{scroll-behavior:smooth}
+
+    body{
+
+      background:#090910;color:#f5f5fa;
+
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+      line-height:1.6;overflow-x:hidden
+
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .wrap{width:min(1120px,90%);margin:auto}
+
+    header{
+
+      position:sticky;top:0;z-index:10;
+
+      background:rgba(9,9,16,.88);backdrop-filter:blur(16px);
+
+      border-bottom:1px solid #252536
+
+    }
+
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+
+    .logo{font-size:23px;font-weight:850;letter-spacing:3px}
+
+    .logo span{color:#a98bff}
+
+    .links{display:flex;gap:28px;color:#b9b8c8;font-size:14px}
+
+    .links a:hover{color:white}
+
+    .menu{display:none;background:none;border:0;color:white;font-size:26px}
+
+    .hero{padding:105px 0 90px;text-align:center;position:relative}
+
+    .glow{
+
+      position:absolute;width:420px;height:300px;left:50%;top:30px;
+
+      transform:translateX(-50%);background:#7046e8;
+
+      filter:blur(150px);opacity:.19;pointer-events:none
+
+    }
+
+    .eyebrow{
+
+      display:inline-block;border:1px solid #514078;border-radius:30px;
+
+      padding:7px 15px;color:#c5b3ff;font-size:12px;
+
+      letter-spacing:2px;text-transform:uppercase
+
+    }
+
+    h1{font-size:clamp(42px,8vw,76px);line-height:1.08;margin:25px 0 18px;letter-spacing:-3px}
+
+    h1 span{background:linear-gradient(100deg,#fff,#b49aff,#d9d4e9);
+
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+
+    .hero p{max-width:620px;margin:0 auto;color:#aaa9ba;font-size:17px}
+
+    .actions{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:32px}
+
+    .btn{
+
+      display:inline-flex;justify-content:center;align-items:center;
+
+      padding:13px 22px;border-radius:12px;font-weight:700;
+
+      border:1px solid #514078;transition:.2s
+
+    }
+
+    .btn.primary{background:linear-gradient(110deg,#7954e8,#a184ff);color:white;border:0}
+
+    .btn.secondary{background:#151521;color:#eee}
+
+    .btn:hover{transform:translateY(-3px);filter:brightness(1.13)}
+
+    section{padding:75px 0}
+
+    .section-head{text-align:center;margin-bottom:38px}
+
+    .section-head small{color:#a98bff;letter-spacing:3px;text-transform:uppercase}
+
+    h2{font-size:clamp(29px,5vw,43px);margin-top:8px;letter-spacing:-1px}
+
+    .section-head p{color:#9998aa;margin-top:10px}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+    .card{
+
+      background:linear-gradient(145deg,#171724,#101019);
+
+      border:1px solid #302c42;border-radius:20px;padding:27px;
+
+      position:relative;transition:.25s
+
+    }
+
+    .card:hover{transform:translateY(-6px);border-color:#8064ce}
+
+    .tag{font-size:11px;color:#c4adff;letter-spacing:2px;text-transform:uppercase}
+
+    .card h3{font-size:23px;margin:13px 0 5px}
+
+    .price{font-size:34px;font-weight:800;margin:18px 0}
+
+    .price small{font-size:13px;color:#9291a2;font-weight:400}
+
+    .card p{color:#aaa9ba;font-size:14px;min-height:65px}
+
+    .card .btn{width:100%;margin-top:22px}
+
+    .note{font-size:12px;color:#858496;margin-top:22px;text-align:center}
+
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+    .step{padding:24px;border:1px solid #29283a;border-radius:17px;background:#11111b}
+
+    .num{font-size:28px;color:#a98bff;font-weight:800}
+
+    .step h3{margin:8px 0}
+
+    .step p{color:#aaa9ba;font-size:14px}
+
+    .faq{max-width:760px;margin:auto}
+
+    details{padding:19px 4px;border-bottom:1px solid #29283a}
+
+    summary{cursor:pointer;font-weight:650}
+
+    details p{color:#aaa9ba;padding-top:12px;font-size:14px}
+
+    .contact{
+
+      text-align:center;border:1px solid #39304e;border-radius:24px;
+
+      padding:45px 20px;background:radial-gradient(ellipse at top,#21173a,#101019 65%)
+
+    }
+
+    .contact p{color:#aaa9ba;margin:10px auto 22px;max-width:500px}
+
+    footer{border-top:1px solid #29283a;padding:28px 0;color:#888799;font-size:12px}
+
+    .foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+
+    @media(max-width:760px){
+
+      .links{display:none}
+
+      .menu{display:block}
+
+      .hero{padding:85px 0 65px}
+
+      .cards,.steps{grid-template-columns:1fr}
+
+      .card p{min-height:0}
+
+      section{padding:58px 0}
+
+      .foot{flex-direction:column;text-align:center}
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="wrap">
+
+    <nav>
+
+      <a class="logo" href="#">TAVRION<span> AI</span></a>
+
+      <div class="links">
+
+        <a href="#services">Сервисы</a>
+
+        <a href="#how">Как это работает</a>
+
+        <a href="#faq">Вопросы</a>
+
+        <a href="#contact">Контакты</a>
+
+      </div>
+
+      <a class="menu" href="#services" aria-label="Перейти к сервисам">☰</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+<main>
+
+  <section class="hero">
+
+    <div class="glow"></div>
+
+    <div class="wrap">
+
+      <span class="eyebrow">Independent Digital Project</span>
+
+      <h1>Технологии.<br><span>Новый уровень.</span></h1>
+
+      <p>TAVRION AI — цифровой проект о современных AI-инструментах и подписках. Выбери интересующий сервис и отправь заявку.</p>
+
+      <div class="actions">
+
+        <a class="btn primary" href="#services">Посмотреть сервисы</a>
+
+        <a class="btn secondary" href="#contact">Связаться с нами</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="services">
+
+    <div class="wrap">
+
+      <div class="section-head">
+
+        <small>Наши предложения</small>
+
+        <h2>Выбери свой сервис</h2>
+
+        <p>Условия и доступность уточняются перед оформлением.</p>
+
+      </div>
+
+      <div class="cards">
+
+        <article class="card">
+
+          <span class="tag">AI assistant</span>
+
+          <h3>ChatGPT GO</h3>
+
+          <p>Тариф для знакомства с возможностями ChatGPT.</p>
+
+          <div class="price">1 000 ₽ <small>/ цена проекта</small></div>
+
+          <a class="btn primary order" data-product="ChatGPT GO" href="#">Оставить заявку</a>
+
+        </article>
+
+        <article class="card">
+
+          <span class="tag">Advanced AI</span>
+
+          <h3>ChatGPT PLUS</h3>
+
+          <p>Расширенные возможности ChatGPT. Уточни доступность и условия.</p>
+
+          <div class="price">3 000 ₽ <small>/ цена проекта</small></div>
+
+          <a class="btn primary order" data-product="ChatGPT PLUS" href="#">Оставить заявку</a>
+
+        </article>
+
+        <article class="card">
+
+          <span class="tag">Premium service</span>
+
+          <h3>Telegram Premium</h3>
+
+          <p>Подписка Telegram Premium. Условия оформления уточняются.</p>
+
+          <div class="price">1 000 ₽ <small>/ цена проекта</small></div>
+
+          <a class="btn primary order" data-product="Telegram Premium" href="#">Оставить заявку</a>
+
+        </article>
+
+      </div>
+
+      <p class="note">Указанные цены предоставлены владельцем проекта и требуют подтверждения перед заказом.</p>
+
+    </div>
+
+  </section>
+
+  <section id="how">
+
+    <div class="wrap">
+
+      <div class="section-head">
+
+        <small>Просто и понятно</small>
+
+        <h2>Как это работает</h2>
+
+      </div>
+
+      <div class="steps">
+
+        <div class="step"><div class="num">01</div><h3>Выбери сервис</h3><p>Ознакомься с предложениями и выбери нужный вариант.</p></div>
+
+        <div class="step"><div class="num">02</div><h3>Отправь заявку</h3><p>Напиши нам в Telegram или WhatsApp и уточни условия.</p></div>
+
+        <div class="step"><div class="num">03</div><h3>Подтверди детали</h3><p>До оплаты проверь доступность, способ оформления и условия сервиса.</p></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="faq">
+
+    <div class="wrap">
+
+      <div class="section-head">
+
+        <small>FAQ</small>
+
+        <h2>Частые вопросы</h2>
+
+      </div>
+
+      <div class="faq">
+
+        <details><summary>Как оставить заявку?</summary><p>Нажми кнопку выбранного сервиса. Откроется сообщение, которое можно отправить через WhatsApp или Telegram.</p></details>
+
+        <details><summary>Можно ли сначала уточнить условия?</summary><p>Да. До оплаты обязательно уточни доступность, итоговую стоимость и способ оформления.</p></details>
+
+        <details><summary>Является ли TAVRION AI официальным представителем этих сервисов?</summary><p>Нет. TAVRION AI — независимый проект, не являющийся официальным представителем OpenAI или Telegram.</p></details>
+
+        <details><summary>Нужно ли передавать пароль от аккаунта?</summary><p>Не отправляй пароли, коды подтверждения и другие секретные данные в переписке.</p></details>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="contact">
+
+    <div class="wrap">
+
+      <div class="contact">
+
+        <span class="eyebrow">TAVRION AI</span>
+
+        <h2>Начнём общение?</h2>
+
+        <p>Напиши нам, чтобы уточнить наличие сервиса, стоимость и условия оформления.</p>
+
+        <div class="actions">
+
+          <a class="btn primary" href="https://wa.me/79770070610" target="_blank" rel="noopener">WhatsApp</a>
+
+          <a class="btn secondary" href="https://t.me/share/url?url=https%3A%2F%2Fccc4y89wrt-cell.github.io%2Ftavrion-ai-site%2F&text=Здравствуйте%2C%20хочу%20узнать%20о%20сервисах%20TAVRION%20AI" target="_blank" rel="noopener">Telegram</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="wrap foot">
+
+    <div>© 2026 TAVRION AI. Независимый цифровой проект.</div>
+
+    <div>Не аффилирован с OpenAI или Telegram.</div>
+
+  </div>
+
+</footer>
+
+<script>
+
+  const whatsapp = "https://wa.me/79770070610";
+
+  document.querySelectorAll(".order").forEach(button => {
+
+    const product = button.dataset.product;
+
+    const message = `Здравствуйте! Интересует ${product} в TAVRION AI. Подскажите, пожалуйста, доступность и условия оформления.`;
+
+    button.href = whatsapp + "?text=" + encodeURIComponent(message);
+
+    button.target = "_blank";
+
+    button.rel = "noopener";
+
+  });
+
+</script>
+
+</body>
+
+</html>
