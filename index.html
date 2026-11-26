@@ -8,453 +8,427 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#090910">
+<meta name="theme-color" content="#080811">
 
-<title>TAVRION AI — Digital Experience</title>
+<title>TAVRION AI — Premium Digital</title>
 
-<meta name="description" content="TAVRION AI — цифровые решения, искусственный интеллект и современные технологии.">
+<meta name="description" content="TAVRION AI — искусственный интеллект, цифровые инструменты и современные технологии.">
 
 <style>
 
-* {
+:root {
 
-  margin: 0;
+  --bg:#080811;
 
-  padding: 0;
+  --panel:#11111e;
 
-  box-sizing: border-box;
+  --purple:#9275ff;
+
+  --white:#f8f7ff;
+
+  --muted:#a5a3b8;
+
+  --line:rgba(255,255,255,.1);
 
 }
 
-html {
+* {box-sizing:border-box;margin:0;padding:0}
 
-  scroll-behavior: smooth;
-
-}
+html {scroll-behavior:smooth}
 
 body {
 
-  background: #090910;
+  background:var(--bg);
 
-  color: #f5f5fa;
+  color:var(--white);
 
-  font-family: Arial, sans-serif;
+  font-family:Arial,sans-serif;
 
-  overflow-x: hidden;
-
-}
-
-a {
-
-  text-decoration: none;
-
-  color: inherit;
+  overflow-x:hidden;
 
 }
+
+a {color:inherit;text-decoration:none}
 
 header {
 
-  min-height: 85px;
+  height:82px;
 
-  padding: 20px 8%;
+  padding:0 7%;
 
-  display: flex;
+  display:flex;
 
-  justify-content: space-between;
+  align-items:center;
 
-  align-items: center;
+  justify-content:space-between;
 
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid var(--line);
+
+  background:rgba(8,8,17,.92);
 
 }
 
 .logo {
 
-  font-size: 23px;
+  font-size:22px;
 
-  font-weight: 800;
+  font-weight:900;
 
-  letter-spacing: 3px;
+  letter-spacing:3px;
 
-  background: linear-gradient(90deg,#fff,#a99aff);
+  background:linear-gradient(100deg,#fff,#a996ff);
 
-  -webkit-background-clip: text;
+  -webkit-background-clip:text;
 
-  color: transparent;
-
-}
-
-nav {
-
-  display: flex;
-
-  gap: 30px;
-
-  font-size: 13px;
-
-  color: #aaa9bd;
+  color:transparent;
 
 }
 
-nav a:hover {
+nav {display:flex;gap:28px;color:var(--muted);font-size:13px}
 
-  color: white;
-
-}
+nav a:hover {color:white}
 
 .hero {
 
-  min-height: 620px;
+  min-height:590px;
 
-  padding: 120px 8% 100px;
+  padding:110px 20px;
 
-  text-align: center;
+  display:flex;
 
-  display: flex;
+  align-items:center;
 
-  flex-direction: column;
+  justify-content:center;
 
-  align-items: center;
+  flex-direction:column;
 
-  justify-content: center;
+  text-align:center;
 
   background:
 
-    radial-gradient(ellipse at 50% 45%,rgba(106,72,220,.22),transparent 55%);
+    radial-gradient(ellipse at 50% 40%,rgba(113,81,220,.25),transparent 60%),
+
+    radial-gradient(ellipse at 10% 90%,rgba(67,55,130,.12),transparent 40%);
 
 }
 
 .tag {
 
-  color: #b7a5ff;
+  color:#c0b1ff;
 
-  border: 1px solid rgba(183,165,255,.3);
+  border:1px solid rgba(168,145,255,.4);
 
-  padding: 10px 20px;
+  border-radius:30px;
 
-  border-radius: 30px;
+  padding:10px 20px;
 
-  font-size: 11px;
+  font-size:11px;
 
-  letter-spacing: 3px;
+  letter-spacing:3px;
 
-  margin-bottom: 30px;
+  margin-bottom:30px;
 
 }
 
 .hero h1 {
 
-  font-size: clamp(42px,8vw,82px);
+  font-size:clamp(43px,9vw,88px);
 
-  letter-spacing: 5px;
+  letter-spacing:5px;
 
-  line-height: 1.1;
+  background:linear-gradient(120deg,#fff,#b8a8ff,#85839b);
 
-  background: linear-gradient(120deg,#fff,#b5a5ff,#85839d);
+  -webkit-background-clip:text;
 
-  -webkit-background-clip: text;
-
-  color: transparent;
+  color:transparent;
 
 }
 
 .hero p {
 
-  max-width: 620px;
+  max-width:620px;
 
-  margin: 28px auto;
+  color:var(--muted);
 
-  color: #aaa9bb;
+  line-height:1.9;
 
-  line-height: 1.8;
+  margin:25px auto;
 
-  font-size: 16px;
-
-}
-
-.primary-btn {
-
-  display: inline-block;
-
-  margin-top: 20px;
-
-  padding: 16px 32px;
-
-  border-radius: 8px;
-
-  background: linear-gradient(110deg,#8b70ff,#6044bd);
-
-  color: white;
-
-  font-weight: bold;
-
-  transition: .3s;
+  font-size:16px;
 
 }
 
-.primary-btn:hover {
+.btn {
 
-  transform: translateY(-4px);
+  display:inline-block;
 
-  box-shadow: 0 10px 35px rgba(123,94,255,.3);
+  padding:15px 27px;
 
-}
+  border-radius:8px;
 
-section {
+  background:linear-gradient(110deg,#9476ff,#6548c7);
 
-  padding: 90px 8%;
+  color:white;
 
-}
+  font-weight:bold;
 
-.section-title {
-
-  text-align: center;
-
-  font-size: 34px;
-
-  margin-bottom: 15px;
+  transition:.3s;
 
 }
 
-.section-subtitle {
+.btn:hover {transform:translateY(-3px);box-shadow:0 10px 30px #7555d644}
 
-  color: #9291a6;
+section {padding:85px 7%}
 
-  text-align: center;
+.heading {text-align:center;font-size:34px;margin-bottom:15px}
 
-  margin-bottom: 50px;
+.subheading {
 
-  line-height: 1.7;
+  text-align:center;
 
-}
+  color:var(--muted);
 
-.cards {
+  line-height:1.8;
 
-  display: grid;
+  max-width:650px;
 
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-
-  gap: 22px;
-
-  max-width: 1100px;
-
-  margin: auto;
+  margin:0 auto 48px;
 
 }
 
-.card {
+.products {
 
-  padding: 32px 26px;
+  display:grid;
 
-  border: 1px solid rgba(255,255,255,.09);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 
-  border-radius: 16px;
+  gap:23px;
 
-  background: linear-gradient(145deg,#171622,#101018);
+  max-width:1100px;
 
-  transition: .3s;
-
-}
-
-.card:hover {
-
-  transform: translateY(-7px);
-
-  border-color: #8870e8;
+  margin:auto;
 
 }
 
-.card .number {
+.product {
 
-  color: #9c87ff;
+  position:relative;
 
-  font-size: 12px;
+  background:linear-gradient(145deg,#191827,#10101a);
 
-  letter-spacing: 2px;
+  border:1px solid var(--line);
 
-}
+  border-radius:17px;
 
-.card h3 {
+  padding:32px 25px;
 
-  font-size: 21px;
-
-  margin: 22px 0 13px;
+  transition:.3s;
 
 }
 
-.card p {
+.product:hover {
 
-  color: #aaa9bb;
+  transform:translateY(-7px);
 
-  font-size: 14px;
-
-  line-height: 1.8;
-
-  min-height: 75px;
+  border-color:#9275ff;
 
 }
 
-.card a {
+.product.featured {
 
-  display: inline-block;
+  border-color:#9478ff;
 
-  margin-top: 22px;
-
-  color: #b8a8ff;
-
-  font-size: 14px;
+  box-shadow:0 0 35px #7655df20;
 
 }
 
-.steps {
+.label {
 
-  max-width: 850px;
+  color:#b9a6ff;
 
-  margin: auto;
+  font-size:11px;
 
-  display: grid;
-
-  gap: 18px;
+  letter-spacing:2px;
 
 }
+
+.product h3 {font-size:23px;margin:20px 0 12px}
+
+.description {
+
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.8;
+
+  min-height:75px;
+
+}
+
+.price {
+
+  font-size:35px;
+
+  font-weight:800;
+
+  margin:25px 0 8px;
+
+}
+
+.price small {font-size:14px;color:var(--muted);font-weight:normal}
+
+.product .btn {width:100%;text-align:center;margin-top:20px}
+
+.note {
+
+  color:#858397;
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  text-align:center;
+
+  max-width:800px;
+
+  margin:30px auto 0;
+
+}
+
+.features {
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+  gap:20px;
+
+  max-width:1050px;
+
+  margin:auto;
+
+}
+
+.feature {
+
+  background:var(--panel);
+
+  border:1px solid var(--line);
+
+  padding:28px;
+
+  border-radius:13px;
+
+}
+
+.feature .symbol {font-size:25px;color:#a994ff}
+
+.feature h3 {margin:17px 0 10px}
+
+.feature p {color:var(--muted);font-size:14px;line-height:1.8}
+
+.steps {max-width:800px;margin:auto;display:grid;gap:16px}
 
 .step {
 
-  display: flex;
+  display:flex;
 
-  gap: 22px;
+  gap:20px;
 
-  padding: 24px;
+  padding:24px;
 
-  border: 1px solid rgba(255,255,255,.08);
+  background:var(--panel);
 
-  background: #12121c;
+  border:1px solid var(--line);
 
-  border-radius: 12px;
-
-}
-
-.step span {
-
-  color: #a48dff;
-
-  font-size: 22px;
-
-  font-weight: bold;
+  border-radius:12px;
 
 }
 
-.step p {
+.step b {color:#aa96ff;font-size:22px}
 
-  color: #aaa9bb;
+.step p {color:var(--muted);font-size:14px;line-height:1.7;margin-top:6px}
 
-  line-height: 1.7;
+.faq {max-width:800px;margin:auto;display:grid;gap:13px}
 
-  margin-top: 7px;
+details {
+
+  background:var(--panel);
+
+  border:1px solid var(--line);
+
+  border-radius:10px;
+
+  padding:20px;
 
 }
+
+summary {cursor:pointer;font-weight:bold}
+
+details p {color:var(--muted);line-height:1.8;margin-top:15px;font-size:14px}
 
 .contact {
 
-  text-align: center;
+  text-align:center;
 
-  background: radial-gradient(ellipse at center,rgba(101,76,197,.16),transparent 65%);
-
-}
-
-.contact p {
-
-  color: #aaa9bb;
-
-  margin: 20px auto;
-
-  line-height: 1.8;
+  background:radial-gradient(ellipse at center,#6044a52b,transparent 65%);
 
 }
 
-.contact-links {
+.contact p {color:var(--muted);line-height:1.8;margin:18px auto}
 
-  display: flex;
+.contact-buttons {
 
-  justify-content: center;
-
-  gap: 15px;
-
-  flex-wrap: wrap;
-
-  margin-top: 30px;
+  display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:28px
 
 }
 
-.contact-links a {
+.contact-buttons a {
 
-  padding: 15px 25px;
+  padding:15px 27px;
 
-  border: 1px solid #62518e;
+  border:1px solid #8068c5;
 
-  border-radius: 8px;
+  border-radius:8px;
 
-  transition: .3s;
-
-}
-
-.contact-links a:hover {
-
-  background: #6b50c6;
+  transition:.3s;
 
 }
+
+.contact-buttons a:hover {background:#7052c6}
 
 footer {
 
-  padding: 35px 8%;
+  padding:35px 20px;
 
-  text-align: center;
+  border-top:1px solid var(--line);
 
-  color: #77768a;
+  text-align:center;
 
-  border-top: 1px solid rgba(255,255,255,.08);
+  color:#858397;
 
-  font-size: 12px;
+  font-size:12px;
 
-  line-height: 2;
+  line-height:2;
 
 }
 
+footer .logo {margin-bottom:10px}
+
 @media(max-width:600px) {
 
-  header {
+  header {height:auto;min-height:75px;padding:18px 16px;flex-wrap:wrap;gap:15px}
 
-    padding: 20px;
+  nav {gap:16px;font-size:11px}
 
-  }
+  .hero {min-height:520px;padding:80px 20px}
 
-  nav {
+  section {padding:65px 19px}
 
-    gap: 12px;
+  .heading {font-size:28px}
 
-    font-size: 11px;
-
-  }
-
-  .hero {
-
-    min-height: 550px;
-
-    padding: 80px 20px;
-
-  }
-
-  section {
-
-    padding: 70px 20px;
-
-  }
-
-  .section-title {
-
-    font-size: 28px;
-
-  }
+  .product {padding:27px 22px}
 
 }
 
@@ -470,9 +444,9 @@ footer {
 
   <nav>
 
-    <a href="#services">Услуги</a>
+    <a href="#prices">Каталог</a>
 
-    <a href="#about">О нас</a>
+    <a href="#about">О проекте</a>
 
     <a href="#contact">Контакты</a>
 
@@ -484,95 +458,163 @@ footer {
 
 <div class="hero">
 
-  <div class="tag">THE FUTURE IS DIGITAL</div>
+  <div class="tag">INDEPENDENT DIGITAL PROJECT</div>
 
   <h1>TAVRION AI</h1>
 
   <p>
 
-    Технологии нового поколения.
+    Новый взгляд на цифровые возможности.
 
-    Искусственный интеллект, цифровые решения
+    Искусственный интеллект, современные инструменты
 
-    и возможности для современного мира.
+    и технологии в одном пространстве.
 
   </p>
 
-  <a class="primary-btn" href="#services">Открыть возможности</a>
+  <a class="btn" href="#prices">Смотреть каталог</a>
 
 </div>
 
-<section id="services">
+<section id="prices">
 
-  <h2 class="section-title">Наши направления</h2>
+  <h2 class="heading">Наш каталог</h2>
 
-  <p class="section-subtitle">
+  <p class="subheading">
 
-    Современные цифровые инструменты в одном пространстве.
+    Выбирайте интересующий вас цифровой продукт
+
+    и уточняйте условия оформления.
 
   </p>
 
-  <div class="cards">
+  <div class="products">
 
-    <div class="card">
+    <article class="product">
 
-      <div class="number">01 / AI TECHNOLOGY</div>
+      <div class="label">AI TECHNOLOGY / 01</div>
 
-      <h3>ChatGPT</h3>
+      <h3>ChatGPT Go</h3>
 
-      <p>
+      <p class="description">
 
-        Информация об официальных тарифах,
+        Тариф ChatGPT для тех, кто хочет
 
-        возможностях и инструментах искусственного интеллекта.
-
-      </p>
-
-      <a href="https://chatgpt.com/" target="_blank">
-
-        Подробнее ↗
-
-      </a>
-
-    </div>
-
-    <div class="card">
-
-      <div class="number">02 / DIGITAL TOOLS</div>
-
-      <h3>AI Solutions</h3>
-
-      <p>
-
-        Создание рекламных материалов, визуального контента
-
-        и цифровых решений с помощью нейросетей.
+        использовать возможности искусственного интеллекта.
 
       </p>
 
-      <a href="#contact">Обсудить проект ↗</a>
+      <div class="price">1 000 ₽</div>
 
-    </div>
+      <small style="color:#aaa">Цена проекта</small>
 
-    <div class="card">
+      <a class="btn" href="https://wa.me/79770070610?text=Здравствуйте!%20Интересует%20ChatGPT%20Go"
 
-      <div class="number">03 / PREMIUM SERVICES</div>
+      target="_blank">Уточнить условия</a>
+
+    </article>
+
+    <article class="product featured">
+
+      <div class="label">PREMIUM / 02</div>
+
+      <h3>ChatGPT Plus</h3>
+
+      <p class="description">
+
+        Расширенные возможности ChatGPT
+
+        для работы, обучения и творчества.
+
+      </p>
+
+      <div class="price">3 000 ₽</div>
+
+      <small style="color:#aaa">Цена проекта</small>
+
+      <a class="btn" href="https://wa.me/79770070610?text=Здравствуйте!%20Интересует%20ChatGPT%20Plus"
+
+      target="_blank">Уточнить условия</a>
+
+    </article>
+
+    <article class="product">
+
+      <div class="label">TELEGRAM / 03</div>
 
       <h3>Telegram Premium</h3>
 
-      <p>
+      <p class="description">
 
-        Информация о возможностях Telegram Premium
+        Дополнительные возможности и функции
 
-        и способах официального оформления.
+        популярного мессенджера Telegram.
 
       </p>
 
-      <a href="https://telegram.org/" target="_blank">
+      <div class="price">1 000 ₽</div>
 
-        Подробнее ↗
+      <small style="color:#aaa">Цена проекта</small>
 
-      </a>
+      <a class="btn" href="https://wa.me/79770070610?text=Здравствуйте!%20Интересует%20Telegram%20Premium"
+
+      target="_blank">Уточнить условия</a>
+
+    </article>
+
+  </div>
+
+  <p class="note">
+
+    Указаны цены проекта. Актуальная доступность, условия,
+
+    срок действия и способ официального оформления уточняются
+
+    перед оплатой. Не передавайте пароли и коды подтверждения.
+
+  </p>
+
+</section>
+
+<section id="about">
+
+  <h2 class="heading">Почему TAVRION AI?</h2>
+
+  <p class="subheading">
+
+    Технологии, продуманный подход и современный цифровой стиль.
+
+  </p>
+
+  <div class="features">
+
+    <div class="feature">
+
+      <div class="symbol">✦</div>
+
+      <h3>Современность</h3>
+
+      <p>Следим за развитием цифровых технологий и AI-инструментов.</p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="symbol">◇</div>
+
+      <h3>Понятность</h3>
+
+      <p>Объясняем условия и помогаем разобраться в доступных вариантах.</p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="symbol">∞</div>
+
+      <h3>Развитие</h3>
+
+      <p>Создаём пространство для новых цифровых возможностей.</p>
 
     </div>
 
@@ -580,29 +622,23 @@ footer {
 
 </section>
 
-<section id="about">
+<section>
 
-  <h2 class="section-title">О TAVRION AI</h2>
+  <h2 class="heading">Как это работает?</h2>
 
-  <p class="section-subtitle">
-
-    Независимый цифровой проект, объединяющий современные
-
-    технологии, искусственный интеллект и качественный дизайн.
-
-  </p>
+  <p class="subheading">Три понятных этапа взаимодействия.</p>
 
   <div class="steps">
 
     <div class="step">
 
-      <span>01</span>
+      <b>01</b>
 
       <div>
 
-        <h3>Современные технологии</h3>
+        <h3>Выбор</h3>
 
-        <p>Изучаем и используем возможности искусственного интеллекта.</p>
+        <p>Выберите интересующий вас продукт в каталоге.</p>
 
       </div>
 
@@ -610,13 +646,13 @@ footer {
 
     <div class="step">
 
-      <span>02</span>
+      <b>02</b>
 
       <div>
 
-        <h3>Качество и стиль</h3>
+        <h3>Консультация</h3>
 
-        <p>Создаём аккуратные, современные и продуманные цифровые решения.</p>
+        <p>Уточните доступность, цену и официальные условия оформления.</p>
 
       </div>
 
@@ -624,17 +660,53 @@ footer {
 
     <div class="step">
 
-      <span>03</span>
+      <b>03</b>
 
       <div>
 
-        <h3>Связь с клиентами</h3>
+        <h3>Оформление</h3>
 
-        <p>Обсуждаем задачи и помогаем подобрать подходящее решение.</p>
+        <p>После согласования условий используйте официальный способ оформления.</p>
 
       </div>
 
     </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <h2 class="heading">Частые вопросы</h2>
+
+  <p class="subheading">Коротко о главном.</p>
+
+  <div class="faq">
+
+    <details>
+
+      <summary>Как узнать актуальную цену?</summary>
+
+      <p>Напишите нам. Мы уточним действующую стоимость и доступность продукта.</p>
+
+    </details>
+
+    <details>
+
+      <summary>Как связаться с TAVRION AI?</summary>
+
+      <p>Вы можете написать нам через WhatsApp или Telegram.</p>
+
+    </details>
+
+    <details>
+
+      <summary>Является ли TAVRION AI официальным представителем OpenAI?</summary>
+
+      <p>Нет. TAVRION AI — независимый цифровой проект, не являющийся официальным представителем OpenAI или Telegram.</p>
+
+    </details>
 
   </div>
 
@@ -642,29 +714,21 @@ footer {
 
 <section class="contact" id="contact">
 
-  <h2 class="section-title">Начнём сотрудничество?</h2>
+  <h2 class="heading">Свяжитесь с нами</h2>
 
   <p>
 
-    Есть вопрос или идея для проекта?<br>
+    Остались вопросы или хотите уточнить условия?<br>
 
-    Свяжитесь с нами удобным способом.
+    Мы будем рады вашему сообщению.
 
   </p>
 
-  <div class="contact-links">
+  <div class="contact-buttons">
 
-    <a href="https://wa.me/79770070610" target="_blank">
+    <a href="https://wa.me/79770070610" target="_blank">WhatsApp ↗</a>
 
-      WhatsApp ↗
-
-    </a>
-
-    <a href="https://t.me/your_username" target="_blank">
-
-      Telegram ↗
-
-    </a>
+    <a href="https://t.me/your_username" target="_blank">Telegram ↗</a>
 
   </div>
 
@@ -678,13 +742,7 @@ footer {
 
   <p>Independent Digital Project © 2026</p>
 
-  <p>
-
-    TAVRION AI не является официальным представителем
-
-    OpenAI или Telegram.
-
-  </p>
+  <p>Не является официальным представителем OpenAI или Telegram.</p>
 
 </footer>
 
