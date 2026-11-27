@@ -8,419 +8,685 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#08090e">
+<meta name="theme-color" content="#08080d">
 
-<title>TAVRION AI — Beyond Digital</title>
+<meta name="description" content="TAVRION AI — цифровые решения, AI-сервисы и поддержка.">
 
-<meta name="description" content="TAVRION AI — пространство цифровых технологий и интеллектуальных решений.">
+<title>TAVRION AI — Digital Experience</title>
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root{
 
- --bg:#08090e;--panel:#11131c;--panel2:#171925;
+  --bg:#08080d;
 
- --white:#f7f7fb;--muted:#a2a4b5;
+  --panel:#111119;
 
- --purple:#987bff;--silver:#d9dce8;
+  --panel2:#171722;
 
- --line:rgba(255,255,255,.1);
+  --white:#f7f7fb;
+
+  --muted:#9999aa;
+
+  --line:rgba(255,255,255,.09);
+
+  --purple:#9270ff;
+
+  --purple2:#6844e8;
+
+  --silver:#d9dce8;
+
+  --radius:22px;
+
+  --shadow:0 25px 80px rgba(0,0,0,.4);
 
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 
 html{scroll-behavior:smooth}
 
 body{
 
- background:var(--bg);color:var(--white);
+  margin:0;
 
- font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;
+  color:var(--white);
+
+  background:
+
+    radial-gradient(ellipse at 50% -20%,rgba(113,76,220,.2),transparent 42%),
+
+    radial-gradient(ellipse at 100% 45%,rgba(71,57,145,.1),transparent 35%),
+
+    var(--bg);
+
+  font-family:'DM Sans',sans-serif;
+
+  overflow-x:hidden;
 
 }
 
 a{color:inherit;text-decoration:none}
 
-button{font:inherit}
+button,input,select{font:inherit}
+
+button{cursor:pointer}
+
+.container{width:min(1160px,calc(100% - 36px));margin:auto}
+
+.glow{
+
+  position:fixed;width:380px;height:380px;border-radius:50%;
+
+  background:rgba(116,78,255,.09);filter:blur(100px);
+
+  pointer-events:none;z-index:-1
+
+}
+
+.glow.one{top:20%;left:-220px}
+
+.glow.two{right:-220px;top:65%}
+
+.topline{
+
+  height:3px;
+
+  background:linear-gradient(90deg,transparent,#8061ed,#e1d8ff,#8061ed,transparent)
+
+}
 
 header{
 
- position:sticky;top:0;z-index:20;
+  position:sticky;top:0;z-index:50;
 
- display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,8,13,.78);
 
- padding:20px 7%;
+  backdrop-filter:blur(22px);
 
- background:rgba(8,9,14,.86);
-
- backdrop-filter:blur(20px);
-
- border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--line)
 
 }
 
-.logo{
+.nav{
 
- font-size:21px;font-weight:900;letter-spacing:4px;
+  min-height:78px;display:flex;align-items:center;
 
- background:linear-gradient(100deg,#fff,#b9aaff,#aeb3c5);
-
- -webkit-background-clip:text;color:transparent;
+  justify-content:space-between;gap:20px
 
 }
 
-nav{display:flex;gap:25px;color:var(--muted);font-size:12px}
+.brand{display:flex;align-items:center;gap:12px}
 
-nav a:hover{color:white}
+.brand-mark{
 
-.hero{
+  width:40px;height:40px;border-radius:13px;
 
- min-height:690px;padding:110px 20px;
+  display:grid;place-items:center;
 
- display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#c7b8ff,#6744d9 60%,#282044);
 
- flex-direction:column;text-align:center;position:relative;
+  color:white;font-weight:900;font-size:19px;
 
- isolation:isolate;
-
-}
-
-.hero:before{
-
- content:"";position:absolute;z-index:-1;
-
- width:min(750px,100vw);height:500px;border-radius:50%;
-
- background:radial-gradient(ellipse,rgba(117,83,225,.25),transparent 68%);
-
- filter:blur(25px);
+  box-shadow:0 0 30px rgba(137,103,255,.3)
 
 }
 
-.eyebrow{
+.brand-name{font-family:Manrope,sans-serif;font-weight:800;letter-spacing:3px}
 
- border:1px solid rgba(174,151,255,.4);
+.brand-sub{font-size:9px;color:#9692a9;letter-spacing:3px;margin-top:3px}
 
- color:#c8bbff;border-radius:40px;padding:11px 20px;
+.navlinks{display:flex;gap:28px;color:#b9b8c5;font-size:13px}
 
- font-size:10px;letter-spacing:3px;margin-bottom:32px;
+.navlinks a:hover{color:white}
 
-}
-
-.hero h1{
-
- font-size:clamp(48px,10vw,108px);letter-spacing:7px;
-
- font-weight:900;
-
- background:linear-gradient(120deg,#fff 15%,#b5a4ff 50%,#888d9e 90%);
-
- -webkit-background-clip:text;color:transparent;
-
-}
-
-.hero p{
-
- max-width:650px;color:var(--muted);
-
- font-size:16px;line-height:1.9;margin:27px auto 35px;
-
-}
-
-.actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.nav-actions{display:flex;align-items:center;gap:10px}
 
 .btn{
 
- display:inline-flex;align-items:center;justify-content:center;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
 
- padding:16px 26px;border-radius:7px;
+  border:1px solid var(--line);border-radius:13px;
 
- font-size:13px;font-weight:bold;transition:.3s;
+  padding:12px 17px;color:white;background:rgba(255,255,255,.04);
 
- cursor:pointer;
-
-}
-
-.btn:hover{transform:translateY(-3px);filter:brightness(1.15)}
-
-.primary{
-
- background:linear-gradient(110deg,#a18aff,#6848cb);
-
- color:white;box-shadow:0 8px 35px rgba(120,87,220,.2);
+  font-size:13px;font-weight:700;transition:.25s
 
 }
 
-.secondary{border:1px solid rgba(255,255,255,.22)}
+.btn:hover{transform:translateY(-2px);border-color:rgba(174,151,255,.55);background:rgba(143,111,255,.12)}
 
-section{padding:90px 7%}
+.btn-primary{
 
-.section-top{text-align:center;margin-bottom:45px}
+  border:0;background:linear-gradient(120deg,#a28aff,#704de5);
 
-.kicker{color:#b4a1ff;font-size:10px;letter-spacing:4px;margin-bottom:15px}
-
-h2{font-size:clamp(28px,5vw,40px);letter-spacing:-1px}
-
-.section-top p{
-
- color:var(--muted);font-size:14px;line-height:1.8;
-
- max-width:620px;margin:15px auto 0;
+  box-shadow:0 9px 30px rgba(112,77,229,.25)
 
 }
 
-.products{
+.btn-primary:hover{background:linear-gradient(120deg,#b6a5ff,#805cf5)}
 
- display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+.menu-btn{display:none}
 
- gap:20px;max-width:1120px;margin:auto;
+.hero{padding:88px 0 65px;position:relative}
+
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center}
+
+.eyebrow{
+
+  display:inline-flex;align-items:center;gap:9px;
+
+  padding:8px 13px;border:1px solid rgba(164,140,255,.25);
+
+  border-radius:99px;background:rgba(129,94,255,.08);
+
+  color:#c8baff;font-size:11px;letter-spacing:1.3px;text-transform:uppercase
 
 }
+
+.dot{width:7px;height:7px;border-radius:50%;background:#a78bff;box-shadow:0 0 12px #a78bff}
+
+h1{
+
+  font-family:Manrope,sans-serif;
+
+  font-size:clamp(43px,6.6vw,78px);
+
+  line-height:1.04;letter-spacing:-4px;
+
+  margin:25px 0 20px;font-weight:800
+
+}
+
+.gradient-text{
+
+  background:linear-gradient(100deg,#fff 5%,#c9baff 45%,#8c6bff 85%);
+
+  -webkit-background-clip:text;background-clip:text;color:transparent
+
+}
+
+.hero-copy{max-width:570px;color:#aaa9b9;font-size:16px;line-height:1.8}
+
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
+.hero-note{font-size:11px;color:#777789;margin-top:20px}
+
+.hero-visual{
+
+  min-height:390px;position:relative;display:grid;place-items:center;
+
+  border:1px solid rgba(255,255,255,.1);border-radius:30px;overflow:hidden;
+
+  background:
+
+    radial-gradient(circle at 50% 45%,rgba(138,106,255,.25),transparent 42%),
+
+    linear-gradient(145deg,#191625,#0d0d15 65%);
+
+  box-shadow:var(--shadow)
+
+}
+
+.orbit{
+
+  position:absolute;width:270px;height:270px;border:1px solid rgba(190,171,255,.2);
+
+  border-radius:50%;transform:rotate(-25deg)
+
+}
+
+.orbit:before,.orbit:after{
+
+  content:"";position:absolute;inset:23px;border:1px solid rgba(190,171,255,.14);
+
+  border-radius:50%;transform:rotate(55deg)
+
+}
+
+.orbit:after{inset:52px;transform:rotate(-55deg)}
+
+.core{
+
+  width:145px;height:145px;border-radius:38px;
+
+  display:grid;place-items:center;
+
+  font-family:Manrope;font-size:49px;font-weight:800;
+
+  background:linear-gradient(145deg,#c6b8ff,#7252df 60%,#30234f);
+
+  box-shadow:0 0 90px rgba(142,109,255,.42),inset 0 1px 2px #fff8;
+
+  transform:rotate(-8deg)
+
+}
+
+.float-card{
+
+  position:absolute;padding:13px 16px;border:1px solid var(--line);
+
+  border-radius:15px;background:rgba(20,19,30,.86);
+
+  backdrop-filter:blur(12px);font-size:12px;color:#ddd;
+
+  box-shadow:0 15px 40px #0005
+
+}
+
+.float-card small{display:block;color:#9993aa;margin-top:4px;font-size:10px}
+
+.float-a{top:45px;left:25px}
+
+.float-b{bottom:42px;right:22px}
+
+.section{padding:65px 0}
+
+.section-head{
+
+  display:flex;align-items:end;justify-content:space-between;
+
+  gap:20px;margin-bottom:28px
+
+}
+
+.kicker{font-size:10px;letter-spacing:2px;color:#a78bff;text-transform:uppercase}
+
+h2{font:800 clamp(28px,4vw,43px) Manrope;margin:10px 0 0;letter-spacing:-1.6px}
+
+.section-desc{color:var(--muted);font-size:13px;line-height:1.7;max-width:430px}
+
+.catalog-layout{display:grid;grid-template-columns:220px 1fr;gap:20px}
+
+.sidebar,.catalog-main,.feature,.support-card,.trust-card{
+
+  background:linear-gradient(145deg,rgba(24,23,35,.95),rgba(14,14,21,.96));
+
+  border:1px solid var(--line);border-radius:var(--radius)
+
+}
+
+.sidebar{padding:19px;height:max-content}
+
+.side-title{font-size:10px;color:#777789;letter-spacing:1.7px;margin:2px 0 14px}
+
+.category{
+
+  display:flex;align-items:center;justify-content:space-between;
+
+  width:100%;padding:12px;border:0;border-radius:11px;
+
+  background:transparent;color:#aaa9b9;text-align:left;font-size:12px;
+
+  margin:3px 0;transition:.2s
+
+}
+
+.category:hover,.category.active{background:rgba(137,105,255,.14);color:white}
+
+.category span:last-child{font-size:10px;color:#8f82c5}
+
+.catalog-main{padding:19px;min-width:0}
+
+.toolbar{display:flex;gap:10px;margin-bottom:19px}
+
+.search-wrap{flex:1;position:relative}
+
+.search-wrap input{
+
+  width:100%;height:43px;border:1px solid var(--line);
+
+  border-radius:12px;background:#0b0b12;color:white;
+
+  padding:0 14px 0 39px;outline:none;font-size:12px
+
+}
+
+.search-wrap input:focus{border-color:#8064e9}
+
+.search-icon{position:absolute;left:14px;top:12px;color:#858397}
+
+.sort{
+
+  border:1px solid var(--line);border-radius:12px;background:#0b0b12;
+
+  color:#c6c4d2;padding:0 11px;font-size:11px;max-width:145px
+
+}
+
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
 
 .product{
 
- position:relative;overflow:hidden;padding:32px 27px;
+  border:1px solid var(--line);border-radius:17px;
 
- border-radius:15px;background:linear-gradient(145deg,#191b28,#10111a);
+  background:linear-gradient(155deg,#1b1a27,#111119 75%);
 
- border:1px solid var(--line);transition:.35s;
-
-}
-
-.product:hover{transform:translateY(-7px);border-color:#9c83ff}
-
-.product.best{border-color:#9275ec;box-shadow:0 0 40px #7655df20}
-
-.product-tag{color:#b5a3ff;font-size:10px;letter-spacing:2px}
-
-.product h3{font-size:23px;margin:24px 0 13px}
-
-.product p{color:var(--muted);font-size:13px;line-height:1.8;min-height:70px}
-
-.price{font-size:37px;font-weight:800;margin:25px 0 5px}
-
-.price-note{color:#9293a4;font-size:11px}
-
-.product .btn{width:100%;margin-top:24px}
-
-.note{
-
- max-width:850px;margin:30px auto 0;color:#858798;
-
- text-align:center;font-size:11px;line-height:1.8;
+  padding:17px;position:relative;overflow:hidden;transition:.25s
 
 }
 
-.features{
+.product:hover{transform:translateY(-5px);border-color:rgba(164,140,255,.45);box-shadow:0 18px 35px #0004}
 
- max-width:1050px;margin:auto;
+.product:before{
 
- display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  content:"";position:absolute;width:120px;height:120px;right:-60px;top:-60px;
 
-}
-
-.feature{
-
- padding:29px;border:1px solid var(--line);
-
- border-radius:13px;background:var(--panel);
+  background:#8d6aff;filter:blur(65px);opacity:.2
 
 }
 
-.feature .symbol{font-size:26px;color:#b29fff}
+.product-top{display:flex;align-items:center;justify-content:space-between;position:relative}
 
-.feature h3{font-size:17px;margin:17px 0 10px}
+.product-icon{
 
-.feature p{font-size:13px;color:var(--muted);line-height:1.8}
+  width:44px;height:44px;border-radius:14px;display:grid;place-items:center;
 
-/* SUPPORT */
+  background:linear-gradient(145deg,#30264f,#191528);font-size:20px;
 
-.support-area{
-
- max-width:1000px;margin:auto;
-
- display:grid;grid-template-columns:.8fr 1.2fr;gap:25px;
-
- align-items:stretch;
+  border:1px solid rgba(177,154,255,.18)
 
 }
 
-.support-info,.chat{
+.favorite{
 
- background:linear-gradient(145deg,#171925,#10111a);
+  border:1px solid var(--line);background:#ffffff08;color:#888;
 
- border:1px solid var(--line);border-radius:17px;
-
- padding:30px;
+  width:32px;height:32px;border-radius:10px;font-size:17px
 
 }
 
-.support-info h3{font-size:23px;margin:15px 0}
+.favorite.active{color:#c3aaff;border-color:#9678ff}
 
-.support-info p{color:var(--muted);font-size:13px;line-height:1.9}
+.product h3{font:700 16px Manrope;margin:18px 0 7px;position:relative}
 
-.support-status{
+.product p{font-size:11px;line-height:1.65;color:#9998a9;min-height:53px;position:relative}
 
- display:inline-flex;align-items:center;gap:9px;
+.price-row{display:flex;align-items:baseline;gap:5px;margin:16px 0}
 
- margin-top:22px;color:#b9e8ca;font-size:12px;
+.price{font:800 24px Manrope}
+
+.currency{font-size:11px;color:#aaa}
+
+.product .btn{width:100%;padding:11px;font-size:11px}
+
+.tag{
+
+  display:inline-block;padding:5px 8px;border-radius:7px;
+
+  background:rgba(145,113,255,.12);color:#c5b6ff;font-size:9px
 
 }
 
-.dot{
+.empty{grid-column:1/-1;text-align:center;padding:35px;color:#999;font-size:13px}
 
- width:8px;height:8px;border-radius:50%;
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 
- background:#6ed69b;box-shadow:0 0 12px #6ed69b;
+.feature{padding:23px}
+
+.feature-icon{
+
+  width:42px;height:42px;display:grid;place-items:center;
+
+  border-radius:13px;background:rgba(143,111,255,.13);
+
+  color:#c4b5ff;font-size:19px;margin-bottom:18px
 
 }
+
+.feature h3{font:700 15px Manrope;margin:0 0 9px}
+
+.feature p{font-size:12px;line-height:1.75;color:#9998a9;margin:0}
+
+.banner{
+
+  border:1px solid rgba(169,146,255,.2);border-radius:26px;
+
+  padding:35px;background:
+
+    radial-gradient(ellipse at 90% 10%,rgba(129,92,255,.24),transparent 42%),
+
+    linear-gradient(120deg,#191626,#101018);
+
+  display:flex;align-items:center;justify-content:space-between;gap:25px
+
+}
+
+.banner h2{font-size:30px}
+
+.banner p{color:#a7a5b5;font-size:13px;line-height:1.7;max-width:550px}
+
+.support-grid{display:grid;grid-template-columns:1fr .9fr;gap:17px}
+
+.support-card{padding:24px}
+
+.support-card h3{font:700 19px Manrope;margin:0 0 9px}
+
+.support-card>p{color:#9998a9;font-size:12px;line-height:1.7}
 
 .chat{
 
- display:flex;flex-direction:column;min-height:420px;
+  background:#0b0b12;border:1px solid var(--line);
+
+  border-radius:16px;overflow:hidden;margin-top:18px
 
 }
 
-.chat-head{
-
- display:flex;align-items:center;gap:12px;
-
- padding-bottom:18px;border-bottom:1px solid var(--line);
-
-}
+.chat-head{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
 
 .bot-avatar{
 
- width:42px;height:42px;border-radius:13px;
+  width:32px;height:32px;border-radius:10px;display:grid;place-items:center;
 
- background:linear-gradient(135deg,#9b7aff,#46317d);
-
- display:grid;place-items:center;font-size:20px;
+  background:linear-gradient(145deg,#a58cff,#6543d8);font-weight:900
 
 }
 
-.chat-head strong{font-size:14px}
+.chat-head strong{font-size:12px}
 
-.chat-head small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.chat-head small{display:block;color:#858395;font-size:10px;margin-top:3px}
 
-.messages{
+.chat-messages{
 
- flex:1;min-height:210px;max-height:300px;overflow-y:auto;
+  height:230px;overflow-y:auto;padding:14px;
 
- display:flex;flex-direction:column;gap:12px;
-
- padding:20px 0;
+  display:flex;flex-direction:column;gap:10px
 
 }
 
 .message{
 
- max-width:88%;padding:13px 15px;border-radius:12px;
+  max-width:85%;padding:10px 12px;border-radius:13px;
 
- font-size:13px;line-height:1.7;white-space:pre-wrap;
-
-}
-
-.message.bot{align-self:flex-start;background:#222433;color:#eee}
-
-.message.user{align-self:flex-end;background:#6149a6;color:white}
-
-.quick{
-
- display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;
+  font-size:11px;line-height:1.6;background:#1a1924;color:#ddd
 
 }
 
-.quick button{
+.message.user{align-self:flex-end;background:#6245c2}
 
- background:#1b1d2b;border:1px solid var(--line);
+.message.bot{align-self:flex-start}
 
- border-radius:20px;padding:9px 12px;
+.chat-controls{display:flex;gap:8px;padding:11px;border-top:1px solid var(--line)}
 
- color:#d5d0ed;font-size:11px;cursor:pointer;
+.chat-controls input{
 
-}
+  flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;
 
-.quick button:hover{border-color:var(--purple)}
-
-.chat-form{display:flex;gap:9px}
-
-.chat-form input{
-
- min-width:0;flex:1;background:#090a11;
-
- border:1px solid var(--line);border-radius:8px;
-
- padding:14px;color:white;outline:none;
+  background:#14131c;color:white;padding:11px;outline:none;font-size:11px
 
 }
 
-.chat-form input:focus{border-color:#9275ec}
+.chat-controls button{border:0;border-radius:10px;background:#7958e8;color:white;padding:0 15px}
 
-.chat-form button{
-
- border:0;border-radius:8px;padding:0 18px;
-
- background:linear-gradient(110deg,#987bff,#6245c4);
-
- color:white;font-weight:bold;cursor:pointer;
-
-}
-
-.chat-hint{font-size:10px;color:#858798;margin-top:12px;line-height:1.6}
-
-/* CONTACT */
+.contact-list{display:grid;gap:10px;margin-top:18px}
 
 .contact{
 
- text-align:center;
+  display:flex;align-items:center;gap:13px;padding:14px;
 
- background:radial-gradient(ellipse at center,#6045a52b,transparent 65%);
+  border:1px solid var(--line);border-radius:14px;background:#ffffff04;
 
-}
-
-.contact p{color:var(--muted);line-height:1.9;margin:17px auto 27px}
-
-footer{
-
- padding:35px 20px;text-align:center;
-
- border-top:1px solid var(--line);
-
- color:#858798;font-size:11px;line-height:2;
+  transition:.2s
 
 }
 
-footer .logo{margin-bottom:10px}
+.contact:hover{border-color:#8667e8;background:#8b6aff12}
 
-@media(max-width:850px){
+.contact-icon{
 
- .products{grid-template-columns:1fr;max-width:480px}
+  width:39px;height:39px;border-radius:12px;display:grid;place-items:center;
 
- .features{grid-template-columns:1fr}
-
- .support-area{grid-template-columns:1fr}
-
- .product p{min-height:0}
+  background:#ffffff0b;font-size:18px
 
 }
 
-@media(max-width:600px){
+.contact strong{display:block;font-size:12px}
 
- header{padding:17px;gap:14px;flex-wrap:wrap}
+.contact small{display:block;color:#8d8b9b;font-size:10px;margin-top:4px}
 
- nav{gap:14px;font-size:10px}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
- .hero{min-height:580px;padding:85px 18px}
+details{
 
- .hero h1{letter-spacing:3px}
+  background:#12121a;border:1px solid var(--line);
 
- section{padding:68px 18px}
+  border-radius:14px;padding:16px
 
- .support-info,.chat{padding:22px}
+}
 
- .chat-form button{padding:0 13px}
+summary{cursor:pointer;font-size:12px;font-weight:700;list-style:none}
+
+summary:after{content:"＋";float:right;color:#a78bff}
+
+details[open] summary:after{content:"−"}
+
+details p{font-size:11px;line-height:1.7;color:#9e9cac;margin:12px 0 0}
+
+footer{border-top:1px solid var(--line);padding:30px 0 35px;margin-top:40px}
+
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}
+
+.footer-copy{font-size:10px;color:#777789;line-height:1.8}
+
+.footer-links{display:flex;gap:17px;font-size:11px;color:#aaa}
+
+.disclaimer{
+
+  margin-top:17px;padding-top:16px;border-top:1px solid var(--line);
+
+  color:#777789;font-size:10px;line-height:1.7
+
+}
+
+.toast{
+
+  position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);
+
+  opacity:0;pointer-events:none;background:#242033;border:1px solid #ffffff20;
+
+  color:white;padding:12px 18px;border-radius:12px;font-size:12px;
+
+  transition:.25s;z-index:100
+
+}
+
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.mobile-menu{display:none}
+
+@media(max-width:900px){
+
+  .hero-grid{grid-template-columns:1fr}
+
+  .hero-visual{min-height:330px}
+
+  .catalog-layout{grid-template-columns:1fr}
+
+  .sidebar{display:flex;flex-wrap:wrap;gap:5px}
+
+  .side-title{width:100%}
+
+  .category{width:auto;flex:1;justify-content:center}
+
+  .category span:last-child{display:none}
+
+}
+
+@media(max-width:650px){
+
+  .container{width:min(100% - 26px,1160px)}
+
+  .nav{min-height:68px}
+
+  .navlinks{display:none}
+
+  .nav-actions .btn{padding:10px 12px;font-size:11px}
+
+  .brand-name{font-size:13px;letter-spacing:2px}
+
+  .brand-sub{font-size:8px}
+
+  .hero{padding:58px 0 35px}
+
+  h1{letter-spacing:-2.5px}
+
+  .hero-copy{font-size:14px}
+
+  .hero-visual{min-height:280px}
+
+  .core{width:115px;height:115px;font-size:40px}
+
+  .orbit{width:220px;height:220px}
+
+  .float-a{left:12px;top:20px}
+
+  .float-b{right:12px;bottom:20px}
+
+  .section{padding:45px 0}
+
+  .section-head{display:block}
+
+  .section-desc{margin-top:12px}
+
+  .catalog-main{padding:12px}
+
+  .toolbar{flex-direction:column}
+
+  .search-wrap input{height:45px}
+
+  .sort{height:42px;max-width:none}
+
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+
+  .product{padding:12px}
+
+  .product h3{font-size:14px}
+
+  .product p{font-size:10px;min-height:65px}
+
+  .price{font-size:20px}
+
+  .features{grid-template-columns:1fr}
+
+  .banner{display:block;padding:24px}
+
+  .banner .btn{margin-top:10px}
+
+  .support-grid{grid-template-columns:1fr}
+
+  .faq{grid-template-columns:1fr}
+
+  .footer-row{align-items:flex-start;flex-direction:column}
+
+}
+
+@media(max-width:370px){
+
+  .products{grid-template-columns:1fr}
+
+  .nav-actions .btn{font-size:10px;padding:9px}
 
 }
 
@@ -430,431 +696,767 @@ footer .logo{margin-bottom:10px}
 
 <body>
 
+<div class="topline"></div>
+
+<div class="glow one"></div>
+
+<div class="glow two"></div>
+
 <header>
 
- <a class="logo" href="#">TAVRION AI</a>
+  <div class="container nav">
 
- <nav>
+    <a class="brand" href="#home">
 
-  <a href="#catalog">Каталог</a>
+      <div class="brand-mark">T</div>
 
-  <a href="#about">О проекте</a>
+      <div>
 
-  <a href="#support">Поддержка</a>
+        <div class="brand-name">TAVRION AI</div>
 
- </nav>
+        <div class="brand-sub">DIGITAL EXPERIENCE</div>
+
+      </div>
+
+    </a>
+
+    <nav class="navlinks">
+
+      <a href="#catalog">Каталог</a>
+
+      <a href="#advantages">Преимущества</a>
+
+      <a href="#support">Поддержка</a>
+
+      <a href="#faq">FAQ</a>
+
+    </nav>
+
+    <div class="nav-actions">
+
+      <a class="btn" href="https://t.me/magomed_0077" target="_blank" rel="noopener">Telegram ↗</a>
+
+      <a class="btn btn-primary" href="#catalog">Открыть каталог</a>
+
+    </div>
+
+  </div>
 
 </header>
 
-<main>
+<main id="home">
 
-<div class="hero">
+  <section class="hero">
 
- <div class="eyebrow">INDEPENDENT DIGITAL PROJECT</div>
+    <div class="container hero-grid">
 
- <h1>TAVRION AI</h1>
+      <div>
 
- <p>
+        <div class="eyebrow"><span class="dot"></span> DIGITAL TECHNOLOGY · 2026</div>
 
-  Beyond ordinary digital.
+        <h1>Технологии.<br><span class="gradient-text">Новый уровень.</span></h1>
 
-  Искусственный интеллект, технологии и современные
+        <p class="hero-copy">
 
-  возможности — в едином пространстве.
+          Добро пожаловать в TAVRION AI — пространство цифровых решений,
 
- </p>
+          современных AI-инструментов и удобной поддержки.
 
- <div class="actions">
+          Всё необходимое — в одном месте.
 
-  <a class="btn primary" href="#catalog">Исследовать платформу ↗</a>
+        </p>
 
-  <a class="btn secondary" href="#support">Центр поддержки</a>
+        <div class="hero-buttons">
 
- </div>
+          <a class="btn btn-primary" href="#catalog">Исследовать каталог <span>↗</span></a>
 
-</div>
+          <a class="btn" href="#support">Связаться с нами</a>
 
-<section id="catalog">
+        </div>
 
- <div class="section-top">
+        <div class="hero-note">Современный интерфейс · Понятная информация · Поддержка пользователей</div>
 
-  <div class="kicker">DIGITAL COLLECTION</div>
+      </div>
 
-  <h2>Выбери свои возможности</h2>
+      <div class="hero-visual">
 
-  <p>Каталог цифровых продуктов TAVRION AI.</p>
+        <div class="orbit"></div>
 
- </div>
+        <div class="core">T</div>
 
- <div class="products">
+        <div class="float-card float-a">✦ TAVRION AI<small>Digital ecosystem</small></div>
 
-  <article class="product">
+        <div class="float-card float-b">◈ SMART SOLUTIONS<small>Technology made simple</small></div>
 
-   <div class="product-tag">AI TECHNOLOGY / 01</div>
-
-   <h3>ChatGPT Go</h3>
-
-   <p>Возможности искусственного интеллекта для повседневных задач, обучения и творчества.</p>
-
-   <div class="price">1 000 ₽</div>
-
-   <div class="price-note">Цена проекта</div>
-
-   <a class="btn primary order" data-product="ChatGPT Go" href="#">Уточнить условия ↗</a>
-
-  </article>
-
-  <article class="product best">
-
-   <div class="product-tag">PREMIUM EXPERIENCE / 02</div>
-
-   <h3>ChatGPT Plus</h3>
-
-   <p>Расширенные возможности AI для продуктивной работы, идей и творческих проектов.</p>
-
-   <div class="price">3 000 ₽</div>
-
-   <div class="price-note">Цена проекта</div>
-
-   <a class="btn primary order" data-product="ChatGPT Plus" href="#">Уточнить условия ↗</a>
-
-  </article>
-
-  <article class="product">
-
-   <div class="product-tag">TELEGRAM / 03</div>
-
-   <h3>Telegram Premium</h3>
-
-   <p>Дополнительные функции и возможности популярного мессенджера Telegram.</p>
-
-   <div class="price">1 000 ₽</div>
-
-   <div class="price-note">Цена проекта</div>
-
-   <a class="btn primary order" data-product="Telegram Premium" href="#">Уточнить условия ↗</a>
-
-  </article>
-
- </div>
-
- <p class="note">
-
-  Цены являются ценами проекта. Перед оплатой необходимо уточнить
-
-  доступность, срок действия и официальный способ оформления.
-
-  TAVRION AI не является официальным представителем OpenAI или Telegram.
-
- </p>
-
-</section>
-
-<section id="about">
-
- <div class="section-top">
-
-  <div class="kicker">THE TAVRION STANDARD</div>
-
-  <h2>Технологии. Стиль. Возможности.</h2>
-
-  <p>Продуманный подход к миру современных цифровых продуктов.</p>
-
- </div>
-
- <div class="features">
-
-  <article class="feature">
-
-   <div class="symbol">✧</div>
-
-   <h3>Современность</h3>
-
-   <p>Знакомство с новыми цифровыми технологиями и AI-инструментами.</p>
-
-  </article>
-
-  <article class="feature">
-
-   <div class="symbol">◇</div>
-
-   <h3>Прозрачность</h3>
-
-   <p>Понятная информация о продуктах и условиях до принятия решения.</p>
-
-  </article>
-
-  <article class="feature">
-
-   <div class="symbol">∞</div>
-
-   <h3>Поддержка</h3>
-
-   <p>Помощь с типовыми вопросами и возможность связаться с проектом.</p>
-
-  </article>
-
- </div>
-
-</section>
-
-<section id="support">
-
- <div class="section-top">
-
-  <div class="kicker">TAVRION ASSISTANT</div>
-
-  <h2>Центр поддержки</h2>
-
-  <p>Познакомься с виртуальным помощником TAVRION AI.</p>
-
- </div>
-
- <div class="support-area">
-
-  <div class="support-info">
-
-   <div class="kicker">CUSTOMER CARE</div>
-
-   <h3>Мы готовы помочь</h3>
-
-   <p>
-
-    Задай вопрос виртуальному помощнику.
-
-    Он подскажет информацию о каталоге, ценах,
-
-    контактах и работе проекта.
-
-   </p>
-
-   <div class="support-status"><span class="dot"></span> Виртуальный помощник доступен</div>
-
-   <div style="margin-top:27px">
-
-    <a class="btn secondary" href="https://wa.me/79770070610?text=Здравствуйте!%20Обращаюсь%20в%20поддержку%20TAVRION%20AI." target="_blank" rel="noopener">Написать в WhatsApp ↗</a>
-
-   </div>
-
-   <div style="margin-top:12px">
-
-    <a class="btn secondary" href="https://t.me/magomed_0077" target="_blank" rel="noopener">Telegram ↗</a>
-
-   </div>
-
-  </div>
-
-  <div class="chat">
-
-   <div class="chat-head">
-
-    <div class="bot-avatar">✦</div>
-
-    <div>
-
-     <strong>TAVRION ASSISTANT</strong>
-
-     <small>Автоматический помощник · Онлайн</small>
+      </div>
 
     </div>
 
-   </div>
+  </section>
 
-   <div class="messages" id="messages" aria-live="polite">
+  <section class="section" id="catalog">
 
-    <div class="message bot">
+    <div class="container">
 
-     Добро пожаловать в TAVRION AI! ✦
+      <div class="section-head">
 
-     Я виртуальный помощник проекта.
+        <div>
 
-     Могу рассказать о продуктах, ценах и контактах.
+          <div class="kicker">01 / COLLECTION</div>
 
-     Чем могу помочь?
+          <h2>Каталог решений</h2>
+
+        </div>
+
+        <p class="section-desc">Выберите интересующее направление. Перед оформлением уточните актуальную доступность и условия.</p>
+
+      </div>
+
+      <div class="catalog-layout">
+
+        <aside class="sidebar">
+
+          <div class="side-title">КАТЕГОРИИ</div>
+
+          <button class="category active" data-category="all">Все предложения <span>03</span></button>
+
+          <button class="category" data-category="ai">AI-сервисы <span>02</span></button>
+
+          <button class="category" data-category="telegram">Telegram <span>01</span></button>
+
+          <button class="category" data-category="favorites">Избранное <span>♡</span></button>
+
+        </aside>
+
+        <div class="catalog-main">
+
+          <div class="toolbar">
+
+            <div class="search-wrap">
+
+              <span class="search-icon">⌕</span>
+
+              <input id="search" type="search" placeholder="Поиск по каталогу..." aria-label="Поиск по каталогу">
+
+            </div>
+
+            <select class="sort" id="sort" aria-label="Сортировка">
+
+              <option value="default">Сначала популярные</option>
+
+              <option value="low">Сначала дешевле</option>
+
+              <option value="high">Сначала дороже</option>
+
+              <option value="name">По названию</option>
+
+            </select>
+
+          </div>
+
+          <div class="products" id="products"></div>
+
+        </div>
+
+      </div>
 
     </div>
 
-   </div>
+  </section>
 
-   <div class="quick">
+  <section class="section" id="advantages">
 
-    <button type="button" data-question="Какие есть подписки?">Каталог</button>
+    <div class="container">
 
-    <button type="button" data-question="Какие цены?">Цены</button>
+      <div class="section-head">
 
-    <button type="button" data-question="Как связаться с поддержкой?">Поддержка</button>
+        <div>
 
-   </div>
+          <div class="kicker">02 / WHY TAVRION</div>
 
-   <form class="chat-form" id="chatForm">
+          <h2>Продумано до деталей</h2>
 
-    <input id="chatInput" type="text" placeholder="Напиши свой вопрос..." maxlength="300" autocomplete="off" required>
+        </div>
 
-    <button type="submit">➤</button>
+        <p class="section-desc">Мы стремимся сделать знакомство с цифровыми продуктами простым, понятным и удобным.</p>
 
-   </form>
+      </div>
 
-   <div class="chat-hint">
+      <div class="features">
 
-    Автоматический помощник отвечает по заранее подготовленным сценариям.
+        <article class="feature">
 
-    Для индивидуальной помощи свяжитесь с нами.
+          <div class="feature-icon">✧</div>
 
-   </div>
+          <h3>Современный подход</h3>
 
-  </div>
+          <p>Понятная структура, аккуратный дизайн и удобная навигация на разных устройствах.</p>
 
- </div>
+        </article>
 
-</section>
+        <article class="feature">
 
-<section class="contact" id="contact">
+          <div class="feature-icon">◈</div>
 
- <div class="kicker">LET'S CONNECT</div>
+          <h3>Прозрачные условия</h3>
 
- <h2>Остаёмся на связи</h2>
+          <p>Уточняйте стоимость, доступность и официальные условия до совершения любых платежей.</p>
 
- <p>Выбери удобный способ связаться с TAVRION AI.</p>
+        </article>
 
- <div class="actions">
+        <article class="feature">
 
-  <a class="btn primary" href="https://wa.me/79770070610?text=Здравствуйте!%20Хочу%20связаться%20с%20TAVRION%20AI." target="_blank" rel="noopener">WhatsApp ↗</a>
+          <div class="feature-icon">⌘</div>
 
-  <a class="btn secondary" href="https://t.me/magomed_0077" target="_blank" rel="noopener">Telegram ↗</a>
+          <h3>Поддержка</h3>
 
- </div>
+          <p>Можно задать вопрос через чат-помощник или написать напрямую в удобный мессенджер.</p>
 
-</section>
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="banner">
+
+        <div>
+
+          <div class="kicker">TAVRION AI / CONTACT</div>
+
+          <h2>Есть вопрос? Мы на связи.</h2>
+
+          <p>Напишите нам, чтобы уточнить информацию о предложениях, доступности и условиях оформления.</p>
+
+        </div>
+
+        <a class="btn btn-primary" href="https://wa.me/79770070610?text=Здравствуйте!%20Хочу%20узнать%20подробнее%20о%20TAVRION%20AI." target="_blank" rel="noopener">Написать в WhatsApp ↗</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="section" id="support">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="kicker">03 / SUPPORT CENTER</div>
+
+          <h2>Центр поддержки</h2>
+
+        </div>
+
+        <p class="section-desc">Начните с автоматического помощника или свяжитесь с нами напрямую.</p>
+
+      </div>
+
+      <div class="support-grid">
+
+        <div class="support-card">
+
+          <h3>AI Support Assistant</h3>
+
+          <p>Автоматический помощник TAVRION AI. Он отвечает на часто задаваемые вопросы по заранее подготовленным сценариям.</p>
+
+          <div class="chat">
+
+            <div class="chat-head">
+
+              <div class="bot-avatar">T</div>
+
+              <div><strong>TAVRION Assistant</strong><small>Автоматический помощник</small></div>
+
+            </div>
+
+            <div class="chat-messages" id="chatMessages" aria-live="polite">
+
+              <div class="message bot">Здравствуйте! Я помощник TAVRION AI. Могу подсказать, где найти каталог, как связаться с поддержкой и где уточнить условия.</div>
+
+            </div>
+
+            <div class="chat-controls">
+
+              <input id="chatInput" type="text" placeholder="Напишите свой вопрос..." maxlength="300">
+
+              <button id="sendChat" aria-label="Отправить сообщение">➤</button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="support-card">
+
+          <h3>Связаться с нами</h3>
+
+          <p>Если ваш вопрос требует ответа человека, используйте один из способов связи.</p>
+
+          <div class="contact-list">
+
+            <a class="contact" href="https://t.me/magomed_0077" target="_blank" rel="noopener">
+
+              <div class="contact-icon">➤</div>
+
+              <div><strong>Telegram</strong><small>@magomed_0077 · Открыть чат</small></div>
+
+            </a>
+
+            <a class="contact" href="https://wa.me/79770070610?text=Здравствуйте!%20Обращаюсь%20в%20поддержку%20TAVRION%20AI." target="_blank" rel="noopener">
+
+              <div class="contact-icon">◉</div>
+
+              <div><strong>WhatsApp</strong><small>Написать в поддержку</small></div>
+
+            </a>
+
+          </div>
+
+          <p style="margin-top:18px;font-size:10px">Не отправляйте пароли, коды подтверждения и данные банковских карт в чат.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="section" id="faq">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="kicker">04 / INFORMATION</div>
+
+          <h2>Частые вопросы</h2>
+
+        </div>
+
+      </div>
+
+      <div class="faq">
+
+        <details>
+
+          <summary>Как узнать актуальную стоимость?</summary>
+
+          <p>Цены в каталоге являются информационными. Перед оформлением уточните актуальную стоимость и условия через поддержку.</p>
+
+        </details>
+
+        <details>
+
+          <summary>Как связаться с поддержкой?</summary>
+
+          <p>Вы можете написать через Telegram или WhatsApp. Ссылки находятся в разделе «Центр поддержки».</p>
+
+        </details>
+
+        <details>
+
+          <summary>TAVRION AI — официальный сайт OpenAI?</summary>
+
+          <p>Нет. TAVRION AI — независимый проект и не является официальным представителем OpenAI или Telegram.</p>
+
+        </details>
+
+        <details>
+
+          <summary>Как оформляются подписки?</summary>
+
+          <p>Проверяйте доступность и условия. Покупку подписок следует совершать через официальные каналы соответствующего сервиса.</p>
+
+        </details>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </main>
 
 <footer>
 
- <div class="logo">TAVRION AI</div>
+  <div class="container">
 
- <p>BEYOND DIGITAL · INDEPENDENT PROJECT</p>
+    <div class="footer-row">
 
- <p>© 2026 TAVRION AI. Все права защищены.</p>
+      <a class="brand" href="#home">
 
- <p>Не является официальным представителем OpenAI или Telegram.</p>
+        <div class="brand-mark">T</div>
+
+        <div>
+
+          <div class="brand-name">TAVRION AI</div>
+
+          <div class="brand-sub">DIGITAL EXPERIENCE</div>
+
+        </div>
+
+      </a>
+
+      <div class="footer-links">
+
+        <a href="#catalog">Каталог</a>
+
+        <a href="#support">Поддержка</a>
+
+        <a href="https://t.me/magomed_0077" target="_blank" rel="noopener">Telegram ↗</a>
+
+      </div>
+
+    </div>
+
+    <div class="disclaimer">
+
+      © 2026 TAVRION AI. Независимый цифровой проект. Не связан и не аффилирован с OpenAI или Telegram.
+
+      Названия сторонних сервисов принадлежат их правообладателям. Условия и доступность сторонних продуктов могут меняться.
+
+    </div>
+
+  </div>
 
 </footer>
 
+<div class="toast" id="toast" role="status"></div>
+
 <script>
 
-const messages = document.getElementById("messages");
+const productsData = [
 
-const form = document.getElementById("chatForm");
+  {
 
-const input = document.getElementById("chatInput");
+    id:"go", name:"ChatGPT Go", category:"ai", price:1000,
 
-function addMessage(text, type){
+    icon:"✧", tag:"AI SERVICE",
 
- const item = document.createElement("div");
+    description:"Информация о возможностях тарифа и способах официального оформления."
 
- item.className = "message " + type;
+  },
 
- item.textContent = text;
+  {
 
- messages.appendChild(item);
+    id:"plus", name:"ChatGPT Plus", category:"ai", price:3000,
 
- messages.scrollTop = messages.scrollHeight;
+    icon:"◈", tag:"AI SERVICE",
 
-}
+    description:"Узнайте об официальном тарифе, доступности и условиях оформления."
 
-function getReply(question){
+  },
 
- const q = question.toLowerCase();
+  {
 
- if(q.includes("привет") || q.includes("здравств"))
+    id:"telegram", name:"Telegram Premium", category:"telegram", price:1000,
 
-  return "Здравствуйте! Добро пожаловать в TAVRION AI. ✦ Чем могу помочь?";
+    icon:"➤", tag:"TELEGRAM",
 
- if(q.includes("каталог") || q.includes("подпис") || q.includes("продукт"))
+    description:"Информация о возможностях Telegram Premium и официальном оформлении."
 
-  return "В каталоге представлены:\n\n• ChatGPT Go — 1 000 ₽\n• ChatGPT Plus — 3 000 ₽\n• Telegram Premium — 1 000 ₽\n\nУточните актуальную доступность и условия перед оплатой.";
+  }
 
- if(q.includes("цен") || q.includes("стоим"))
+];
 
-  return "Цены проекта:\n\nChatGPT Go — 1 000 ₽\nChatGPT Plus — 3 000 ₽\nTelegram Premium — 1 000 ₽\n\nСтоимость и возможность официального оформления нужно подтвердить перед оплатой.";
+const productsElement = document.getElementById("products");
 
- if(q.includes("whatsapp") || q.includes("ватсап"))
+const searchElement = document.getElementById("search");
 
-  return "Связаться с проектом в WhatsApp можно по кнопке ниже:\nhttps://wa.me/79770070610";
+const sortElement = document.getElementById("sort");
 
- if(q.includes("telegram") || q.includes("телеграм"))
+let currentCategory = "all";
 
-  return "Telegram проекта: @magomed_0077\nhttps://t.me/magomed_0077";
+let favorites = [];
 
- if(q.includes("поддерж") || q.includes("оператор") || q.includes("человек"))
+try {
 
-  return "Для индивидуальной помощи напишите в WhatsApp. Сообщение уже будет подготовлено:\nhttps://wa.me/79770070610?text=Здравствуйте!%20Нужна%20помощь%20поддержки%20TAVRION%20AI.";
+  favorites = JSON.parse(localStorage.getItem("tavrionFavorites") || "[]");
 
- if(q.includes("openai") || q.includes("официаль"))
+  if (!Array.isArray(favorites)) favorites = [];
 
-  return "TAVRION AI — независимый цифровой проект. Мы не являемся официальным представителем OpenAI или Telegram.";
+} catch (error) {
 
- if(q.includes("оплат") || q.includes("купить") || q.includes("заказ"))
-
-  return "Перед оплатой обязательно уточните наличие продукта, итоговую стоимость и официальный способ оформления. Не отправляйте никому пароли и коды подтверждения.";
-
- if(q.includes("спасибо"))
-
-  return "Пожалуйста! Спасибо, что обратились в TAVRION AI. ✦";
-
- return "Пока я не могу ответить на этот вопрос автоматически. Напишите в поддержку WhatsApp — там можно уточнить информацию:\nhttps://wa.me/79770070610?text=Здравствуйте!%20У%20меня%20вопрос%20по%20TAVRION%20AI.";
+  favorites = [];
 
 }
 
-function sendQuestion(question){
+function escapeHTML(value) {
 
- const clean = question.trim();
+  return String(value).replace(/[&<>"']/g, char => ({
 
- if(!clean) return;
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
 
- addMessage(clean,"user");
-
- input.value = "";
-
- setTimeout(()=>{
-
-  addMessage(getReply(clean),"bot");
-
- },350);
+  }[char]));
 
 }
 
-form.addEventListener("submit",function(event){
+function renderProducts() {
 
- event.preventDefault();
+  let list = [...productsData];
 
- sendQuestion(input.value);
+  const query = searchElement.value.trim().toLowerCase();
+
+  if (currentCategory === "ai" || currentCategory === "telegram") {
+
+    list = list.filter(item => item.category === currentCategory);
+
+  }
+
+  if (currentCategory === "favorites") {
+
+    list = list.filter(item => favorites.includes(item.id));
+
+  }
+
+  if (query) {
+
+    list = list.filter(item =>
+
+      (item.name + " " + item.description + " " + item.tag).toLowerCase().includes(query)
+
+    );
+
+  }
+
+  if (sortElement.value === "low") list.sort((a,b) => a.price - b.price);
+
+  if (sortElement.value === "high") list.sort((a,b) => b.price - a.price);
+
+  if (sortElement.value === "name") list.sort((a,b) => a.name.localeCompare(b.name, "ru"));
+
+  if (!list.length) {
+
+    productsElement.innerHTML = '<div class="empty">Ничего не найдено. Попробуйте изменить запрос.</div>';
+
+    return;
+
+  }
+
+  productsElement.innerHTML = list.map(item => `
+
+    <article class="product">
+
+      <div class="product-top">
+
+        <div class="product-icon">${item.icon}</div>
+
+        <button class="favorite ${favorites.includes(item.id) ? "active" : ""}"
+
+          data-favorite="${item.id}" aria-label="Добавить в избранное">
+
+          ${favorites.includes(item.id) ? "♥" : "♡"}
+
+        </button>
+
+      </div>
+
+      <div style="margin-top:15px"><span class="tag">${item.tag}</span></div>
+
+      <h3>${escapeHTML(item.name)}</h3>
+
+      <p>${escapeHTML(item.description)}</p>
+
+      <div class="price-row">
+
+        <span class="price">${item.price.toLocaleString("ru-RU")} ₽</span>
+
+        <span class="currency">ориентир</span>
+
+      </div>
+
+      <a class="btn btn-primary" href="${makeWhatsAppLink(item.name)}" target="_blank" rel="noopener">
+
+        Уточнить условия ↗
+
+      </a>
+
+    </article>
+
+  `).join("");
+
+}
+
+function makeWhatsAppLink(productName) {
+
+  const message = `Здравствуйте! Хочу узнать актуальную информацию об официальном оформлении: ${productName}.`;
+
+  return "https://wa.me/79770070610?text=" + encodeURIComponent(message);
+
+}
+
+document.querySelectorAll(".category").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document.querySelectorAll(".category").forEach(item => item.classList.remove("active"));
+
+    button.classList.add("active");
+
+    currentCategory = button.dataset.category;
+
+    renderProducts();
+
+  });
 
 });
 
-document.querySelectorAll(".quick button").forEach(button=>{
+productsElement.addEventListener("click", event => {
 
- button.addEventListener("click",()=>{
+  const button = event.target.closest("[data-favorite]");
 
-  sendQuestion(button.dataset.question);
+  if (!button) return;
 
- });
+  const id = button.dataset.favorite;
+
+  favorites = favorites.includes(id)
+
+    ? favorites.filter(item => item !== id)
+
+    : [...favorites, id];
+
+  try {
+
+    localStorage.setItem("tavrionFavorites", JSON.stringify(favorites));
+
+  } catch (error) {}
+
+  renderProducts();
+
+  showToast(favorites.includes(id) ? "Добавлено в избранное" : "Удалено из избранного");
 
 });
 
-document.querySelectorAll(".order").forEach(link=>{
+searchElement.addEventListener("input", renderProducts);
 
- const product = link.dataset.product;
+sortElement.addEventListener("change", renderProducts);
 
- const message = "Здравствуйте! Меня интересует " + product + " в TAVRION AI. Подскажите, пожалуйста, актуальную доступность и условия официального оформления.";
+function showToast(message) {
 
- link.href = "https://wa.me/79770070610?text=" + encodeURIComponent(message);
+  const toast = document.getElementById("toast");
 
- link.target = "_blank";
+  toast.textContent = message;
 
- link.rel = "noopener";
+  toast.classList.add("show");
+
+  clearTimeout(showToast.timeout);
+
+  showToast.timeout = setTimeout(() => toast.classList.remove("show"), 2200);
+
+}
+
+const chatMessages = document.getElementById("chatMessages");
+
+const chatInput = document.getElementById("chatInput");
+
+function addMessage(text, type) {
+
+  const message = document.createElement("div");
+
+  message.className = "message " + type;
+
+  message.textContent = text;
+
+  chatMessages.appendChild(message);
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+}
+
+function botReply(text) {
+
+  const q = text.toLowerCase();
+
+  if (/привет|здравств|добрый день|салам/.test(q)) {
+
+    return "Здравствуйте! Добро пожаловать в TAVRION AI. Чем могу помочь?";
+
+  }
+
+  if (/каталог|товар|предлож|услуг/.test(q)) {
+
+    return "Каталог находится выше на этой странице. Там можно посмотреть предложения, воспользоваться поиском и добавить позиции в избранное.";
+
+  }
+
+  if (/цен|стоим|сколько|руб/.test(q)) {
+
+    return "Цены указаны в каталоге как ориентир. Актуальную стоимость и условия уточните у поддержки до оформления.";
+
+  }
+
+  if (/телеграм|telegram/.test(q)) {
+
+    return "Наш Telegram: @magomed_0077. Нажмите на ссылку в разделе поддержки.";
+
+  }
+
+  if (/ватсап|whatsapp|номер|связ/.test(q)) {
+
+    return "Связаться с нами можно через WhatsApp: +7 977 007 06 10 или Telegram: @magomed_0077.";
+
+  }
+
+  if (/подпис|оформ|купить|заказ/.test(q)) {
+
+    return "Мы можем подсказать, где уточнить условия. Оформляйте сторонние подписки только через официальные каналы сервиса и не передавайте никому пароли или коды.";
+
+  }
+
+  if (/openai|официальн/.test(q)) {
+
+    return "TAVRION AI — независимый проект. Мы не являемся официальным представителем OpenAI или Telegram.";
+
+  }
+
+  if (/оператор|человек|менеджер|поддержк/.test(q)) {
+
+    return "Для связи с человеком напишите нам в Telegram или WhatsApp. Кнопки находятся рядом с этим чатом.";
+
+  }
+
+  return "Пока у меня нет готового ответа на этот вопрос. Напишите в поддержку через Telegram или WhatsApp — вам ответят отдельно.";
+
+}
+
+function sendChatMessage() {
+
+  const text = chatInput.value.trim();
+
+  if (!text) return;
+
+  addMessage(text, "user");
+
+  chatInput.value = "";
+
+  setTimeout(() => addMessage(botReply(text), "bot"), 350);
+
+}
+
+document.getElementById("sendChat").addEventListener("click", sendChatMessage);
+
+chatInput.addEventListener("keydown", event => {
+
+  if (event.key === "Enter") sendChatMessage();
 
 });
+
+renderProducts();
 
 </script>
 
