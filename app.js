@@ -2,57 +2,29 @@
 (() => {
   "use strict";
 
+  const DATA = window.TAVRION_DATA || {};
+
   const CONFIG = {
-    brand: "TAVRION AI",
-    whatsapp: "79770070610",
-    telegram: "https://t.me/magomed_0077"
+    brand: DATA.brand?.name || "TAVRION AI",
+    whatsapp: DATA.contacts?.whatsapp || "79770070610",
+    telegram: DATA.contacts?.telegram || "https://t.me/magomed_0077",
+    currency: DATA.currency || "₽"
   };
 
-  const PRODUCTS = [
-    {
-      id: "chatgpt-go",
-      name: "ChatGPT Go",
-      category: "ai",
-      price: 1000,
-      description: "Доступный тариф для повседневных задач",
-      features: ["Работа с ИИ", "Помощь в обучении", "Повседневные задачи"],
-      label: "GO"
-    },
-    {
-      id: "chatgpt-plus",
-      name: "ChatGPT Plus",
-      category: "ai",
-      price: 3000,
-      description: "Расширенные возможности ChatGPT",
-      features: ["Расширенные инструменты", "Работа с файлами", "Творческие задачи"],
-      label: "PLUS"
-    },
-    {
-      id: "telegram-premium",
-      name: "Telegram Premium",
-      category: "telegram",
-      price: 1000,
-      description: "Дополнительные возможности Telegram",
-      features: ["Дополнительные функции", "Расширенные настройки", "Premium-возможности"],
-      label: "PREMIUM"
-    }
-  ];
+  const PRODUCTS = Array.isArray(DATA.products) ? DATA.products : [];
 
   const state = {
     category: "all",
     search: "",
     sort: "default",
-    favorites: new Set(),
-    chatOpen: false
+    favorites: new Set()
   };
 
   const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const $$ = (selector, root = document) =>
+    [...root.querySelectorAll(selector)];
 
-  const money = value =>
-    new Intl.NumberFormat("ru-RU").format(value) + " ₽";
-
-  const escapeHTML = value =>
+  const escapeHTML = (value = "") =>
     String(value).replace(/[&<>"']/g, char => ({
       "&": "&amp;",
       "<": "&lt;",
@@ -61,267 +33,269 @@
       "'": "&#039;"
     })[char]);
 
-  function notify(message) {
-    let toast = $("#tavrion-toast");
-
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "tavrion-toast";
-      toast.setAttribute("role", "status");
-      toast.style.cssText = [
-        "position:fixed",
-        "bottom:24px",
-        "left:50%",
-        "transform:translateX(-50%)",
-        "z-index:99999",
-        "padding:14px 22px",
-        "border:1px solid rgba(190,160,255,.35)",
-        "border-radius:14px",
-        "background:#171321",
-        "color:#fff",
-        "font:500 14px Arial,sans-serif",
-        "box-shadow:0 12px 40px #0008",
-        "max-width:90%",
-        "text-align:center"
-      ].join(";");
-      document.body.appendChild(toast);
+  function loadFavorites() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("tavrion-favorites") || "[]");
+      if (Array.isArray(saved)) state.favorites = new Set(saved);
+    } catch {
+      state.favorites = new Set();
     }
-
-    toast.textContent = message;
-    toast.hidden = false;
-
-    clearTimeout(notify.timer);
-    notify.timer = setTimeout(() => {
-      toast.hidden = true;
-    }, 2600);
   }
 
-  function orderLink(product) {
-    const message = `Здравствуйте! Интересует ${product.name}. Указанная на сайте цена: ${money(product.price)}. Подскажите, пожалуйста, условия и официальный способ оформления.`;
+  function saveFavorites() {
+    try {
+      localStorage.setItem(
+        "tavrion-favorites",
+        JSON.stringify([...state.favorites])
+      );
+    } catch {
+      // Сайт продолжит работать, даже если хранилище недоступно.
+    }
+  }
+
+  function formatPrice(price) {
+    return Number(price || 0).toLocaleString("ru-RU");
+  }
+
+  function getWhatsAppLink(product) {
+    const message = [
+      "Здравствуйте! Интересует предложение TAVRION AI:",
+      product.name,
+      `Цена на сайте: ${formatPrice(product.price)} ${CONFIG.currency}`,
+      "Расскажите, пожалуйста, об условиях."
+    ].join("\n");
 
     return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
   }
 
   function getVisibleProducts() {
-    let items = PRODUCTS.filter(product => {
-      const categoryMatch =
-        state.category === "all" ||
-        product.category === state.category;
+    let items = [...PRODUCTS];
 
-      const searchText =
-        `${product.name} ${product.description} ${product.features.join(" ")}`
-          .toLowerCase();
+    if (state.category === "favorites") {
+      items = items.filter(product => state.favorites.has(product.id));
+    } else if (state.category !== "all") {
+      items = items.filter(product => product.category === state.category);
+    }
 
-      const searchMatch =
-        searchText.includes(state.search.toLowerCase());
+    if (state.search.trim()) {
+      const query = state.search.toLowerCase().trim();
 
-      return categoryMatch && searchMatch;
-    });
+      items = items.filter(product => {
+        const searchable = [
+          product.name,
+          product.description,
+          product.label,
+          ...(product.features || [])
+        ].join(" ").toLowerCase();
+
+        return searchable.includes(query);
+      });
+    }
 
     if (state.sort === "price-up") {
-      items.sort((a, b) => a.price - b.price);
+      items.sort((a, b) => Number(a.price) - Number(b.price));
     }
 
     if (state.sort === "price-down") {
-      items.sort((a, b) => b.price - a.price);
+      items.sort((a, b) => Number(b.price) - Number(a.price));
     }
 
     if (state.sort === "name") {
       items.sort((a, b) => a.name.localeCompare(b.name, "ru"));
     }
 
-    if (state.sort === "favorites") {
-      items = items.filter(item => state.favorites.has(item.id));
-    }
-
     return items;
   }
 
-  function productCard(product) {
-    const favorite = state.favorites.has(product.id);
+  function renderProduct(product) {
+    const id = escapeHTML(product.id);
+    const name = escapeHTML(product.name);
+    const description = escapeHTML(product.description || "");
+    const label = escapeHTML(product.label || "Предложение");
+    const icon = escapeHTML(product.icon || "✦");
+    const isFavorite = state.favorites.has(product.id);
+
+    const features = (product.features || [])
+      .map(feature => `<li>${escapeHTML(feature)}</li>`)
+      .join("");
 
     return `
-      <article class="product-card" data-product="${escapeHTML(product.id)}">
-        <div class="product-card__top">
-          <span class="product-card__label">${escapeHTML(product.label)}</span>
+      <article class="product">
+        <div class="product-top">
+          <div class="product-icon">${icon}</div>
           <button
-            class="favorite-button ${favorite ? "is-active" : ""}"
+            class="favorite ${isFavorite ? "active" : ""}"
             type="button"
-            data-favorite="${escapeHTML(product.id)}"
-            aria-label="${favorite ? "Убрать из избранного" : "Добавить в избранное"}"
-            aria-pressed="${favorite}"
-          >${favorite ? "♥" : "♡"}</button>
+            data-favorite="${id}"
+            aria-label="${isFavorite ? "Убрать из избранного" : "Добавить в избранное"}"
+            aria-pressed="${isFavorite}"
+          >${isFavorite ? "♥" : "♡"}</button>
         </div>
 
-        <div class="product-card__icon" aria-hidden="true">
-          ${product.category === "telegram" ? "✦" : "◈"}
+        <div class="tag">${label}</div>
+
+        <h3>${name}</h3>
+        <p>${description}</p>
+
+        ${features ? `<ul class="product-features">${features}</ul>` : ""}
+
+        <div class="price-row">
+          <span class="price">${formatPrice(product.price)}</span>
+          <span class="currency">${escapeHTML(CONFIG.currency)}</span>
         </div>
 
-        <h3 class="product-card__title">${escapeHTML(product.name)}</h3>
-        <p class="product-card__description">${escapeHTML(product.description)}</p>
-
-        <ul class="product-card__features">
-          ${product.features.map(feature =>
-            `<li>${escapeHTML(feature)}</li>`
-          ).join("")}
-        </ul>
-
-        <div class="product-card__bottom">
-          <strong class="product-card__price">${money(product.price)}</strong>
-          <a
-            class="product-card__button"
-            href="${orderLink(product)}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Уточнить условия</a>
-        </div>
+        <a
+          class="btn btn-primary"
+          href="${getWhatsAppLink(product)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Уточнить условия</a>
       </article>
     `;
   }
 
   function renderCatalog() {
-    const container =
-      $("#products-grid") ||
-      $("#product-grid") ||
+    const container = $("#products-grid") || $("#product-grid") ||
       $("[data-products]");
 
     if (!container) return;
 
     const products = getVisibleProducts();
 
-    container.innerHTML = products.length
-      ? products.map(productCard).join("")
-      : `<div class="empty-state">Ничего не найдено. Попробуйте изменить запрос.</div>`;
-
-    const count = $("#products-count");
-    if (count) count.textContent = String(products.length);
-
-    const favoritesCount = $("#favorites-count");
-    if (favoritesCount) {
-      favoritesCount.textContent = String(state.favorites.size);
+    if (!products.length) {
+      container.innerHTML = `
+        <div class="empty">
+          <div class="product-icon">✦</div>
+          <h3>Ничего не найдено</h3>
+          <p>Попробуйте изменить поиск или выбрать другую категорию.</p>
+        </div>
+      `;
+      return;
     }
+
+    container.innerHTML = products.map(renderProduct).join("");
+  }
+
+  function updateCategories() {
+    $$("[data-category]").forEach(button => {
+      const active = button.dataset.category === state.category;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  function updateFavoritesCount() {
+    const counters = $$("[data-favorites-count]");
+    counters.forEach(counter => {
+      counter.textContent = String(state.favorites.size);
+    });
   }
 
   function setCategory(category) {
     state.category = category;
-
-    $$("[data-category]").forEach(button => {
-      const active = button.dataset.category === category;
-      button.classList.toggle("is-active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
-
+    updateCategories();
     renderCatalog();
   }
 
-  function answerQuestion(question) {
-    const text = question.toLowerCase();
-
-    if (text.includes("цен") || text.includes("стоим")) {
-      return "На сайте указаны цены: ChatGPT Go — 1 000 ₽, ChatGPT Plus — 3 000 ₽, Telegram Premium — 1 000 ₽. Перед оформлением уточните актуальные условия.";
+  function toggleFavorite(id) {
+    if (state.favorites.has(id)) {
+      state.favorites.delete(id);
+    } else {
+      state.favorites.add(id);
     }
 
-    if (text.includes("телеграм")) {
-      return "Связаться с нами можно через Telegram: @magomed_0077. Напишите, какой продукт вас интересует.";
-    }
-
-    if (text.includes("ватсап") || text.includes("whatsapp")) {
-      return "Для связи через WhatsApp используйте кнопку контакта на сайте.";
-    }
-
-    if (text.includes("поддерж") || text.includes("оператор")) {
-      return "Для индивидуального вопроса напишите нам в Telegram или WhatsApp. Это автоматический помощник, он не подключён к оператору.";
-    }
-
-    if (text.includes("оплат") || text.includes("куп")) {
-      return "Сначала уточните наличие, актуальную цену и условия оформления у поддержки. Не отправляйте пароли или коды подтверждения.";
-    }
-
-    if (text.includes("openai") || text.includes("официаль")) {
-      return "TAVRION AI — независимый проект, не являющийся официальным представителем OpenAI или Telegram. Проверяйте доступность и условия подписок на официальных ресурсах.";
-    }
-
-    return "Пока я могу подсказать по ценам, контактам и условиям. Для другого вопроса напишите в нашу поддержку.";
+    saveFavorites();
+    updateFavoritesCount();
+    renderCatalog();
   }
 
-  function addChatMessage(message, type = "bot") {
+  function showToast(message) {
+    let toast = $("#tavrion-toast");
+
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "tavrion-toast";
+      toast.className = "toast";
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("visible");
+
+    window.clearTimeout(showToast.timer);
+    showToast.timer = window.setTimeout(() => {
+      toast.classList.remove("visible");
+    }, 2400);
+  }
+
+  function addChatMessage(text, type = "bot") {
     const messages = $("#chat-messages") || $("#support-messages");
     if (!messages) return;
 
-    const bubble = document.createElement("div");
-    bubble.className = `chat-message chat-message--${type}`;
-    bubble.textContent = message;
-    messages.appendChild(bubble);
+    const message = document.createElement("div");
+    message.className = `message ${type}`;
+    message.textContent = text;
+
+    messages.appendChild(message);
     messages.scrollTop = messages.scrollHeight;
   }
 
-  function openChat() {
-    const panel = $("#support-chat") || $("#chat-panel");
-    if (!panel) {
-      notify("Раздел поддержки пока не найден на странице.");
-      return;
+  function getBotReply(question) {
+    const q = question.toLowerCase();
+
+    if (/привет|здравств|добрый день|добрый вечер/.test(q)) {
+      return "Здравствуйте! Добро пожаловать в TAVRION AI. Чем могу помочь?";
     }
 
-    state.chatOpen = !state.chatOpen;
-    panel.hidden = !state.chatOpen;
-    panel.classList.toggle("is-open", state.chatOpen);
-
-    const button = $("#support-toggle") || $("#chat-toggle");
-    if (button) {
-      button.setAttribute("aria-expanded", String(state.chatOpen));
+    if (/цена|стоимость|сколько|прайс/.test(q)) {
+      return "Актуальные цены указаны в каталоге. Выберите интересующее предложение и уточните условия у поддержки.";
     }
+
+    if (/go|го\b/.test(q)) {
+      return "ChatGPT Go указан в каталоге за 1 000 ₽. Перед оплатой обязательно уточните доступность и условия.";
+    }
+
+    if (/plus|плюс/.test(q)) {
+      return "ChatGPT Plus указан в каталоге за 3 000 ₽. Уточнить доступность и условия можно через контакты поддержки.";
+    }
+
+    if (/telegram|телеграм|премиум/.test(q)) {
+      return "Telegram Premium указан в каталоге за 1 000 ₽. Уточните доступность и условия перед покупкой.";
+    }
+
+    if (/оплат|купить|заказ/.test(q)) {
+      return "Чтобы уточнить условия, нажмите кнопку у выбранного предложения. Не отправляйте пароли и коды подтверждения.";
+    }
+
+    if (/поддерж|оператор|человек|связаться/.test(q)) {
+      return "Для связи с поддержкой используйте Telegram или WhatsApp в разделе контактов сайта.";
+    }
+
+    if (/спасибо/.test(q)) {
+      return "Пожалуйста! Будем рады помочь.";
+    }
+
+    return "Я автоматический помощник TAVRION AI и могу отвечать на основные вопросы. Для уточнения деталей напишите нашей поддержке через контакты на сайте.";
   }
 
-  function bindEvents() {
-    document.addEventListener("click", event => {
-      const categoryButton = event.target.closest("[data-category]");
-      if (categoryButton) {
-        setCategory(categoryButton.dataset.category);
-        return;
-      }
-
-      const favoriteButton = event.target.closest("[data-favorite]");
-      if (favoriteButton) {
-        const id = favoriteButton.dataset.favorite;
-
-        if (state.favorites.has(id)) {
-          state.favorites.delete(id);
-        } else {
-          state.favorites.add(id);
-        }
-
-        renderCatalog();
-        return;
-      }
-
-      const chatButton = event.target.closest(
-        "#support-toggle, #chat-toggle, [data-open-chat]"
-      );
-
-      if (chatButton) {
-        openChat();
-        return;
-      }
-
-      const telegramButton = event.target.closest("[data-telegram]");
-      if (telegramButton) {
-        window.open(CONFIG.telegram, "_blank", "noopener,noreferrer");
-      }
+  function setupCatalog() {
+    $$("[data-category]").forEach(button => {
+      button.addEventListener("click", () => {
+        setCategory(button.dataset.category);
+      });
     });
 
-    const search = $("#product-search") ||
-      $("#search-input") ||
+    const search = $("#product-search") || $("#search-input") ||
       $("[data-search]");
 
     if (search) {
       search.addEventListener("input", event => {
-        state.search = event.target.value.trim();
+        state.search = event.target.value;
         renderCatalog();
       });
     }
 
-    const sort = $("#product-sort") ||
-      $("#sort-select") ||
+    const sort = $("#product-sort") || $("#sort-select") ||
       $("[data-sort]");
 
     if (sort) {
@@ -331,57 +305,64 @@
       });
     }
 
-    const chatForm = $("#chat-form") ||
-      $("#support-form");
+    document.addEventListener("click", event => {
+      const favoriteButton = event.target.closest("[data-favorite]");
 
-    if (chatForm) {
-      chatForm.addEventListener("submit", event => {
-        event.preventDefault();
+      if (favoriteButton) {
+        toggleFavorite(favoriteButton.dataset.favorite);
+      }
+    });
+  }
 
-        const input = $("#chat-input") ||
-          $("#support-input") ||
-          $("input", chatForm);
+  function setupChat() {
+    const form = $("#chat-form") || $("#support-form");
+    const input = $("#chat-input") || $("#support-input");
 
-        if (!input || !input.value.trim()) return;
+    if (!form || !input) return;
 
-        const question = input.value.trim();
-        addChatMessage(question, "user");
-        input.value = "";
+    form.addEventListener("submit", event => {
+      event.preventDefault();
 
-        window.setTimeout(() => {
-          addChatMessage(answerQuestion(question), "bot");
-        }, 250);
-      });
-    }
+      const question = input.value.trim();
+      if (!question) return;
 
-    $$("[data-contact-whatsapp]").forEach(button => {
-      button.addEventListener("click", () => {
-        const message = encodeURIComponent(
-          "Здравствуйте! Хочу узнать подробнее о TAVRION AI."
-        );
+      addChatMessage(question, "user");
+      input.value = "";
 
-        window.open(
-          `https://wa.me/${CONFIG.whatsapp}?text=${message}`,
-          "_blank",
-          "noopener,noreferrer"
-        );
-      });
+      window.setTimeout(() => {
+        addChatMessage(getBotReply(question), "bot");
+      }, 350);
+    });
+  }
+
+  function setupContactLinks() {
+    $$("[data-contact='telegram']").forEach(link => {
+      link.href = CONFIG.telegram;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+
+    $$("[data-contact='whatsapp']").forEach(link => {
+      link.href = `https://wa.me/${CONFIG.whatsapp}`;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
     });
   }
 
   function init() {
-    bindEvents();
+    loadFavorites();
+    setupCatalog();
+    setupChat();
+    setupContactLinks();
+    updateCategories();
+    updateFavoritesCount();
     renderCatalog();
 
-    const year = $("#current-year");
-    if (year) year.textContent = String(new Date().getFullYear());
-
-    document.documentElement.classList.add("tavrion-ready");
-    console.info("TAVRION AI initialized.");
+    console.info(`${CONFIG.brand}: система сайта запущена.`);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init, { once: true });
+    document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
